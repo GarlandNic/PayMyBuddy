@@ -20,6 +20,6 @@ public class User {
 	
 	private String password;
 	
-	private int balance;
+	private int balance=0;
 
 }

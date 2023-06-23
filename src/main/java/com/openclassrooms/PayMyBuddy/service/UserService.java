@@ -1,8 +1,6 @@
 package com.openclassrooms.PayMyBuddy.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.openclassrooms.PayMyBuddy.model.User;
 
@@ -13,11 +11,12 @@ public class UserService {
 		
 	}
 	
-	public User createNewUser(String email, String pwd1, String pwd2) {
+	public User createNewUser(User user) {
+		
 		// check pwd identiques
 		// check si email déja dans la base
-		// add nouvel user
-		return new User();
+		// add nouvel user dans la base de donnée
+		return user;
 	}
 
 }
