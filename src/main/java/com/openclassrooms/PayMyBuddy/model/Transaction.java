@@ -26,7 +26,7 @@ public class Transaction {
 	private String recipientEmail;
 	
 	@Id
-	private LocalDate time;
+	private LocalDate transferTime;
 	
 	private int value;
 	

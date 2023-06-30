@@ -1,55 +1,32 @@
 
-DROP DATABASE IF EXISTS mypaybuddy
+DROP DATABASE IF EXISTS mypaybuddy_tests
 
-create database mypaybuddy;
-use mypaybuddy;
+create database mypaybuddy_tests;
+use mypaybuddy_tests;
 
 create table users(
-EMAIL int PRIMARY KEY,
-PASSWORD bool NOT NULL,
-BALANCE varchar(10) NOT NULL
+ EMAIL varchar(255) PRIMARY KEY,
+ PASSWORD varchar(63) NOT NULL,
+ BALANCE integer unsigned DEFAULT 0
 );
 
-create table ticket(
- ID int PRIMARY KEY AUTO_INCREMENT,
- PARKING_NUMBER int NOT NULL,
- VEHICLE_REG_NUMBER varchar(10) NOT NULL,
- PRICE double,
- IN_TIME DATETIME NOT NULL,
- OUT_TIME DATETIME,
- FOREIGN KEY (PARKING_NUMBER)
- REFERENCES parking(PARKING_NUMBER));
-
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(1,true,'CAR');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(2,true,'CAR');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(3,true,'CAR');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(4,true,'BIKE');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(5,true,'BIKE');
-commit;
-
-/* Setting up TEST DB */
-create database test;
-use test;
-
-create table parking(
-PARKING_NUMBER int PRIMARY KEY,
-AVAILABLE bool NOT NULL,
-TYPE varchar(10) NOT NULL
+create table friends(
+ USER_EMAIL varchar(255) PRIMARY KEY,
+ FRIEND_EMAIL varchar(255) PRIMARY KEY,
+ NICKNAME varchar(10),
+ PRIMARY KEY (USER_EMAIL, FRIEND_EMAIL),
+ FOREIGN KEY (USER_EMAIL) REFERENCES users (EMAIL) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY (FRIEND_EMAIL) REFERENCES users (EMAIL) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-create table ticket(
- ID int PRIMARY KEY AUTO_INCREMENT,
- PARKING_NUMBER int NOT NULL,
- VEHICLE_REG_NUMBER varchar(10) NOT NULL,
- PRICE double,
- IN_TIME DATETIME NOT NULL,
- OUT_TIME DATETIME,
- FOREIGN KEY (PARKING_NUMBER)
- REFERENCES parking(PARKING_NUMBER));
-
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(1,true,'CAR');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(2,true,'CAR');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(3,true,'CAR');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(4,true,'BIKE');
-insert into parking(PARKING_NUMBER,AVAILABLE,TYPE) values(5,true,'BIKE');
+create table transactions(
+ SENDER_EMAIL varchar(255) PRIMARY KEY,
+ RECIPIENT_EMAIL varchar(255) PRIMARY KEY,
+ TRANSFER_TIME datetime NOT NULL,
+ VALUE integer unsigned NOT NULL,
+ DESCRIPTION varchar(1023)
+ PRIMARY KEY (SENDER_EMAIL, RECIPIENT_EMAIL, TRANSFER_TIME),
+ FOREIGN KEY (SENDER_EMAIL, RECIPIENT_EMAIL) REFERENCES friends (USER_EMAIL, FRIEND_EMAIL) ON DELETE CASCADE ON UPDATE CASCADE
+);
+ 
 commit;
