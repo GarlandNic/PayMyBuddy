@@ -13,7 +13,6 @@ public class UserService {
 	
 	public User createNewUser(User user) {
 		
-		// check pwd identiques
 		// check si email déja dans la base
 		// add nouvel user dans la base de donnée
 		return user;

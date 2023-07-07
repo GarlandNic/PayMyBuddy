@@ -1,5 +1,5 @@
 
-DROP DATABASE IF EXISTS mypaybuddy_tests
+DROP DATABASE IF EXISTS mypaybuddy_tests;
 
 create database mypaybuddy_tests;
 use mypaybuddy_tests;
@@ -24,7 +24,7 @@ create table transactions(
  RECIPIENT_EMAIL varchar(255) PRIMARY KEY,
  TRANSFER_TIME datetime NOT NULL,
  VALUE integer unsigned NOT NULL,
- DESCRIPTION varchar(1023)
+ DESCRIPTION varchar(1023),
  PRIMARY KEY (SENDER_EMAIL, RECIPIENT_EMAIL, TRANSFER_TIME),
  FOREIGN KEY (SENDER_EMAIL, RECIPIENT_EMAIL) REFERENCES friends (USER_EMAIL, FRIEND_EMAIL) ON DELETE CASCADE ON UPDATE CASCADE
 );
