@@ -16,32 +16,32 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-    @GetMapping("/")
-    public String viewHomePage(Model model) {
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String viewHomePage(Model model) {
+//        return "index";
+//    }
 	
 //	@PostMapping("/userLogin")
 //	public String loginAccess() {
 //		return "userLogin";
 //	}
 
-	@GetMapping("/userLogin")
-	public void login() {
-	}
+//	@GetMapping("/userLogin")
+//	public void login() {
+//	}
+//	
+//	@PostMapping("/userCreation")
+//	public String newUserAccess() {
+//		return "newUser";
+//	}
 	
-	@PostMapping("/userCreation")
-	public String newUserAccess() {
-		return "newUser";
-	}
-	
-	@PostMapping("/newUser")
-	public void createNewUser(@ModelAttribute User user) {
-		userService.createNewUser(user);
-		 
-		// check pwd identiques -- en commentaire
-		// check si email déja dans la base
-		// add nouvel user
-	}
+//	@PostMapping("/newUser")
+//	public void createNewUser(@ModelAttribute User user) {
+//		userService.createNewUser(user);
+//		 
+//		// check pwd identiques -- en commentaire
+//		// check si email déja dans la base
+//		// add nouvel user
+//	}
 
 }
