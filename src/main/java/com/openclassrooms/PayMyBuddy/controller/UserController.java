@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.openclassrooms.PayMyBuddy.model.User;
 import com.openclassrooms.PayMyBuddy.service.UserService;
 
+import jakarta.annotation.security.RolesAllowed;
+
 @RestController
 public class UserController {
 	
 	@Autowired
 	private UserService userServ;
 	
+	@RolesAllowed("ADMIN")
     @GetMapping("/admin/users")
     public void viewAllUsers() {
     }
