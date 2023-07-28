@@ -35,7 +35,7 @@ public class securityConfig {
 	@Bean
 	public UserDetailsService userDetailsService() {
 		UserDetails user =
-			 User.withDefaultPasswordEncoder()
+			 User.builder()
 				.username("user")
 				.password("password")
 				.roles("USER")
@@ -44,8 +44,8 @@ public class securityConfig {
 		return new InMemoryUserDetailsManager(user);
 	}
 	
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//	    return new BCryptPasswordEncoder();
-//	}
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+	    return new BCryptPasswordEncoder();
+	}
 }
