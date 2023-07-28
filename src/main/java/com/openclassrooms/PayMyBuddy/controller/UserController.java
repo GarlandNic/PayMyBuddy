@@ -16,10 +16,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-//    @GetMapping("/")
-//    public String viewHomePage(Model model) {
-//        return "index";
-//    }
+    @GetMapping("/admin/users")
+    public void viewAllUsers() {
+    }
 	
 //	@PostMapping("/userLogin")
 //	public String loginAccess() {

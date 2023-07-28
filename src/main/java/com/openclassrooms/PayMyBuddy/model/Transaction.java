@@ -19,8 +19,6 @@ import lombok.Data;
 @Table(name = "transactions")
 public class Transaction {
 	
-	static private double FEE_RATE = 0.005;
-	
 	@Id
 	private String senderEmail;
 	
@@ -33,18 +31,9 @@ public class Transaction {
 	// value in cents
 	private int value;
 	
+	// not a computed value because fee rate could change over time
+	private int fee;
+	
 	private String description;
-	
-	public int getFee() {
-		return (int) Math.floor(((double) this.value)*FEE_RATE);
-	}
-	
-	public int getDebit() {
-		return (this.value + this.getFee());
-	}
-	
-	public int getCredit() {
-		return this.value;
-	}
 
 }

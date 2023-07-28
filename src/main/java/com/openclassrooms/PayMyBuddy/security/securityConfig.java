@@ -21,6 +21,7 @@ public class securityConfig {
 		http
 			.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/", "/home").permitAll()
+				.requestMatchers("/admin").hasRole("ADMIN")
 				.anyRequest().authenticated()
 			)
 			.formLogin((form) -> form
@@ -39,6 +40,9 @@ public class securityConfig {
 				.username("user")
 				.password("password")
 				.roles("USER")
+				.username("admin")
+				.password("admin")
+				.roles("ADMIN")
 				.build();
 
 		return new InMemoryUserDetailsManager(user);
