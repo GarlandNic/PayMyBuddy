@@ -1,15 +1,16 @@
 package com.openclassrooms.PayMyBuddy.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.PayMyBuddy.model.User;
+import com.openclassrooms.PayMyBuddy.repository.UserRepository;
 
 @Service
 public class UserService {
 	
-	public void login() {
-		
-	}
+	@Autowired
+	private UserRepository userRepo;
 	
 	public User createNewUser(User user) {
 		

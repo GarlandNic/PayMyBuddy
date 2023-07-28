@@ -14,7 +14,7 @@ import com.openclassrooms.PayMyBuddy.service.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService userService;
+	private UserService userServ;
 	
     @GetMapping("/admin/users")
     public void viewAllUsers() {
