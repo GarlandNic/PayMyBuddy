@@ -35,30 +35,30 @@ public class Transaction {
 	private LocalDate transferTime;
 	
 	// value in cents
-	private Long value=0L;
+	private int value=0;
 	
 	// not a computed value because fee rate could change over time
-	private Long fee=0L;
+	private int fee=0;
 	// sql integer unsigned : 0 - 4,294,967,295
 	// java int : -2,147,483,648 à 2,147,483,647
 	
 	private String description;
 	
-	private static final Long MAX_INT = 4294967295L;
+//	private static final Long MAX_INT = 4294967295L;
 	
-	public void setValue(Long val) throws UnexpectedException {
-		if(val>MAX_INT) {
-			logger.error("Too big value");
-			throw new UnexpectedException("Too big value");
+	public void setValue(int val) throws UnexpectedException {
+		if(val<0) {
+			logger.error("negative value");
+			throw new UnexpectedException("negative value");
 		} else {
 			this.value = val;
 		}
 	}	
 	
-	public void setFee(Long f) throws UnexpectedException {
-		if(f>MAX_INT) {
-			logger.error("Too big fee");
-			throw new UnexpectedException("Too big fee");
+	public void setFee(int f) throws UnexpectedException {
+		if(f<0) {
+			logger.error("negative fee");
+			throw new UnexpectedException("negative fee");
 		} else {
 			this.fee = f;
 		}
