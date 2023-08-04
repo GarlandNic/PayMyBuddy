@@ -22,6 +22,8 @@ public class User {
 	
 	private String password;
 	
-	private int balance=0;
+	private Long balance=0L;
+	// sql integer unsigned : 0 - 4,294,967,295
+	// java int : -2,147,483,648 à 2,147,483,647
 
 }
