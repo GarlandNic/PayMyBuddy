@@ -12,10 +12,13 @@
         	<div th:if="${param.logout}">
             	You have been logged out.
         	</div>
-            <div><label><input type="text" name="email" placeholder="Email"/> </label></div>
+            <div><label><input type="text" name="username" placeholder="Email"/> </label></div>
             <div><label><input type="password" name="password" placeholder="Password"/> </label></div>
-            <div><label><input type="checkbox" name="remember">Remember me</label></div>
             <div><input type="submit" value="Login"/></div>
+        </form>
+        
+        <form th:action="@{/newUser}" method="get">
+        	<div><input type="submit" value="Create new user"/></div>
         </form>
     </body>
 </html>

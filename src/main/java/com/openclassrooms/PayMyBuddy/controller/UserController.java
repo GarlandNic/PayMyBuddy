@@ -23,19 +23,13 @@ public class UserController {
     public void viewAllUsers() {
     }
 	
-//	@PostMapping("/userLogin")
-//	public String loginAccess() {
-//		return "userLogin";
-//	}
-
-//	@GetMapping("/userLogin")
-//	public void login() {
-//	}
-//	
-//	@PostMapping("/userCreation")
-//	public String newUserAccess() {
-//		return "newUser";
-//	}
+	@GetMapping("/newUser")
+	public String newUserAccess(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+		return "newUser";
+	}
+	
 	
 //	@PostMapping("/newUser")
 //	public void createNewUser(@ModelAttribute User user) {
@@ -45,5 +39,15 @@ public class UserController {
 //		// check si email déja dans la base
 //		// add nouvel user
 //	}
+	
+//	@PostMapping("/userLogin")
+//	public String loginAccess() {
+//		return "userLogin";
+//	}
+
+//	@GetMapping("/userLogin")
+//	public void login() {
+//	}
+
 
 }
