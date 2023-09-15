@@ -25,6 +25,8 @@ public class UserController {
 		
 	@GetMapping("/login")
 	public String login(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
 		return "login";
 	}
 	
@@ -42,20 +44,21 @@ public class UserController {
 	
 	@PostMapping("/newUser")
 	public String createNewUser(@ModelAttribute User user) {
-		userServ.createNewUser(user);
-		// check si email déja dans la base
+		User userCheck = userServ.createNewUser(user);
+
+		if( userCheck==null ) {
+			// avec un message d'erreur ? comment ?
+			return "newUser";
+		}
 
 		return "home";
 	}
 	
-//	@PostMapping("/login")
-//	public String loginAccess() {
-//		return "userLogin";
-//	}
-
-//	@GetMapping("/userLogin")
-//	public void login() {
-//	}
-
+	@PostMapping("/login")
+	public String loginAccess(@ModelAttribute User user) {
+		boolean isOK = userServ.checkUser(user);
+		
+		return "home";
+	}
 
 }

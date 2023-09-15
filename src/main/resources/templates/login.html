@@ -4,7 +4,7 @@
         <title>Pay My Buddy </title>
     </head>
     <body>
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/login}" th:object="${user}" method="post">
         	<div>Pay My Buddy</div>
         	<div th:if="${param.error}">
             	Invalid username and password.
@@ -12,10 +12,12 @@
         	<div th:if="${param.logout}">
             	You have been logged out.
         	</div>
-            <div><label><input type="text" name="username" placeholder="Email"/> </label></div>
-            <div><label><input type="password" name="password" placeholder="Password"/> </label></div>
+            <div><label><input type="text" th:field="*{email}" placeholder="Email"/> </label></div>
+            <div><label><input type="password" th:field="*{password}" placeholder="Password"/> </label></div>
             <div><input type="submit" value="Login"/></div>
         </form>
+        
+        <br/>
         
         <form th:action="@{/newUser}" method="get">
         	<div><input type="submit" value="Create new user"/></div>
