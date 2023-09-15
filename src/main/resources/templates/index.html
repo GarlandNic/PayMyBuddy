@@ -6,12 +6,18 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/userLogin}" method="get">
-	<button type="submit">Login</button> 
+<h1> Hello there ! Welcome to Pay My Buddy :)</h1>
+
+<form action="#" th:action="@{/login}" method="get">
+	<button type="submit">Login to my account !</button> 
 </form>
 
-<form action="#" th:action="@{/userCreation}" method="post">
-	<button type="submit">New account</button> 
+<br/>
+
+You're new here ?
+
+<form action="#" th:action="@{/newUser}" method="get">
+	<button type="submit">Create a new account !</button> 
 </form>
 
 </body>

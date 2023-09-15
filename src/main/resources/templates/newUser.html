@@ -6,16 +6,20 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/user}" th:object="${user}" method="post">
+<form action="#" th:action="@{/newUser}" th:object="${user}" method="post">
 	<h1> Create new account </h1>
 	<fieldset>
 		<p>
-        	<label th:text="#{msg.email}" />
+        	<label>
+      		Adresse mail :
             <input type="email" th:field="*{email}" required />
+            </label>
         </p>
         <p>
-           	<label th:text="#{msg.pwd}" />
-            <input type="password" th:field="*{password}" required >
+           	<label>
+           	Mot de passe :
+            <input type="password" th:field="*{password}" required />
+            </label>
         </p>
         <!-- 
         <p>
