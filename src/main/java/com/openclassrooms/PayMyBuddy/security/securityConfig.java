@@ -38,12 +38,9 @@ public class securityConfig {
 	UserDetailsService userDetailsService() {
 		UserDetails user =
 			 User.builder()
-				.username("user")
+				.username("email")
 				.password("password")
 				.roles("USER")
-				.username("admin")
-				.password("admin")
-				.roles("ADMIN")
 				.build();
 
 		return new InMemoryUserDetailsManager(user);

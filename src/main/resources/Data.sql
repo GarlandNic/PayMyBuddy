@@ -1,8 +1,8 @@
 
-DROP DATABASE IF EXISTS mypaybuddy;
+DROP DATABASE IF EXISTS paymybuddy;
 
-create database mypaybuddy;
-use mypaybuddy;
+create database paymybuddy;
+use paymybuddy;
 
 create table users(
  EMAIL varchar(255) PRIMARY KEY,
