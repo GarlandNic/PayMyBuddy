@@ -7,7 +7,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserControllerTest {
+public class PMBUserControllerTest {
 	
 	@Autowired
 	private MockMvc mockMvc;

@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.openclassrooms.PayMyBuddy.repository.UserRepository;
+import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class UserServiceTest {
+public class PMBUserServiceTest {
 
 	@Autowired
-	UserService ts;
+	PMBUserService ts;
 	
 	@MockBean
-	UserRepository tr;
+	PMBUserRepository tr;
 
 }

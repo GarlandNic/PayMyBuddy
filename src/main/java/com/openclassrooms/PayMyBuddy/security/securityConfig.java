@@ -2,6 +2,7 @@ package com.openclassrooms.PayMyBuddy.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,13 +35,16 @@ public class securityConfig {
 		return http.build();
 	}
 
+    
+//    Ces utilisateurs seront définis en mémoire, bien que dans des projets de production 
+// 		cette méthode est à proscrire au bénéfice d’utilisateurs stockées par exemple dans une base de données.
 	@Bean
 	UserDetailsService userDetailsService() {
 		UserDetails user =
 			 User.builder()
-				.username("email")
-				.password("password")
-				.roles("USER")
+				.username("admin")
+				.password("admin")
+				.roles("ADMIN")
 				.build();
 
 		return new InMemoryUserDetailsManager(user);
@@ -49,5 +53,10 @@ public class securityConfig {
 	@Bean
 	PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	DaoAuthenticationProvider authenticationProvider() {
+		// UserService qui override userdetailservice.loaduserbyusername
 	}
 }

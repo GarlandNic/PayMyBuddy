@@ -5,18 +5,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.openclassrooms.PayMyBuddy.model.User;
-import com.openclassrooms.PayMyBuddy.repository.UserRepository;
+import com.openclassrooms.PayMyBuddy.model.PMBUser;
+import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 
 @Service
-public class UserService {
+public class PMBUserService {
 	
 	@Autowired
-	private UserRepository userRepo;
+	private PMBUserRepository userRepo;
 	
-	public User createNewUser(User user) {
+	public PMBUser createNewUser(PMBUser user) {
 		
-		Optional<User> existingUser = userRepo.findById(user.getEmail());
+		Optional<PMBUser> existingUser = userRepo.findById(user.getEmail());
 		
 		if(existingUser.isPresent()) {
 			// message d'erreur
@@ -26,9 +26,9 @@ public class UserService {
 		}
 	}
 
-	public boolean checkUser(User user) {
+	public boolean checkUser(PMBUser user) {
 		
-		Optional<User> existingUser = userRepo.findById(user.getEmail());
+		Optional<PMBUser> existingUser = userRepo.findById(user.getEmail());
 		
 		if(existingUser.isPresent()) {
 			if( existingUser.get().getPassword().equals(user.getPassword()) ) {

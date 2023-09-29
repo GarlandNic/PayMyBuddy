@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.openclassrooms.PayMyBuddy.model.User;
-import com.openclassrooms.PayMyBuddy.service.UserService;
+import com.openclassrooms.PayMyBuddy.model.PMBUser;
+import com.openclassrooms.PayMyBuddy.service.PMBUserService;
 
 import jakarta.annotation.security.RolesAllowed;
 
 @Controller
-public class UserController {
+public class PMBUserController {
 	
 	@Autowired
-	private UserService userServ;
+	private PMBUserService userServ;
 	
 //	@RolesAllowed("ADMIN")
 //    @GetMapping("/admin/users")
@@ -25,14 +25,14 @@ public class UserController {
 		
 	@GetMapping("/login")
 	public String login(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+        PMBUser user = new PMBUser();
+        model.addAttribute("pmbuser", user);
 		return "login";
 	}
 	
 	@GetMapping("/newUser")
 	public String newUserAccess(Model model) {
-        User user = new User();
+        PMBUser user = new PMBUser();
         model.addAttribute("user", user);
 		return "newUser";
 	}
@@ -43,8 +43,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/newUser")
-	public String createNewUser(@ModelAttribute User user) {
-		User userCheck = userServ.createNewUser(user);
+	public String createNewUser(@ModelAttribute PMBUser user) {
+		PMBUser userCheck = userServ.createNewUser(user);
 
 		if( userCheck==null ) {
 			// avec un message d'erreur ? comment ?
@@ -55,7 +55,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String loginAccess(@ModelAttribute User user) {
+	public String loginAccess(@ModelAttribute PMBUser user) {
 		boolean isOK = userServ.checkUser(user);
 		
 		return "home";
