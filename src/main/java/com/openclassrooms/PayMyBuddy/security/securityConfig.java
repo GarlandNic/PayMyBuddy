@@ -1,9 +1,12 @@
 package com.openclassrooms.PayMyBuddy.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -17,6 +20,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class securityConfig {
+	
+	@Autowired
+	private CustomUserDetailsService userDetailsServ;
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -55,8 +61,16 @@ public class securityConfig {
 	    return new BCryptPasswordEncoder();
 	}
 	
+//	@Bean
+//	DaoAuthenticationProvider authenticationProvider() {
+//		// UserService qui override userdetailservice.loaduserbyusername
+//	}
+	
 	@Bean
-	DaoAuthenticationProvider authenticationProvider() {
-		// UserService qui override userdetailservice.loaduserbyusername
+	public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {
+		AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+		authenticationManagerBuilder.userDetailsService(userDetailsServ).passwordEncoder(bCryptPasswordEncoder);
+		return authenticationManagerBuilder.build();
 	}
+	
 }

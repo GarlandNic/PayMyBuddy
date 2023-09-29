@@ -54,11 +54,11 @@ public class PMBUserController {
 		return "home";
 	}
 	
-	@PostMapping("/login")
-	public String loginAccess(@ModelAttribute PMBUser user) {
-		boolean isOK = userServ.checkUser(user);
-		
-		return "home";
-	}
+//	@PostMapping("/login")
+//	public String loginAccess(@ModelAttribute PMBUser user) {
+//		boolean isOK = userServ.checkUser(user);
+//		
+//		return "home";
+//	}
 
 }
