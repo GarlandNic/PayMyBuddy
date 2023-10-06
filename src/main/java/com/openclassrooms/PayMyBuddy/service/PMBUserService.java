@@ -19,26 +19,25 @@ public class PMBUserService {
 		Optional<PMBUser> existingUser = userRepo.findById(user.getEmail());
 		
 		if(existingUser.isPresent()) {
-			// message d'erreur
 			return null;
 		} else {
 			return userRepo.save(user) ;
 		}
 	}
 
-	public boolean checkUser(PMBUser user) {
-		
-		Optional<PMBUser> existingUser = userRepo.findById(user.getEmail());
-		
-		if(existingUser.isPresent()) {
-			if( existingUser.get().getPassword().equals(user.getPassword()) ) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}		
-	}
+//	public boolean checkUser(PMBUser user) {
+//		
+//		Optional<PMBUser> existingUser = userRepo.findById(user.getEmail());
+//		
+//		if(existingUser.isPresent()) {
+//			if( existingUser.get().getPassword().equals(user.getPassword()) ) {
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		} else {
+//			return false;
+//		}		
+//	}
 
 }

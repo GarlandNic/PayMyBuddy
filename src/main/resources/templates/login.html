@@ -9,12 +9,10 @@
     
         <form th:action="@{/login}" th:object="${pmbuser}" method="post">
         	<div th:if="${param.error}">
-            	Invalid username and password.
-            	<br/>
+        		<h3> Invalid username and password. </h3>
         	</div>
         	<div th:if="${param.logout}">
-            	You have been logged out.
-            	<br/>
+            	<h3> You have been logged out. </h3>
         	</div>
             <div><label><input type="text" th:field="*{email}" placeholder="Email"/> </label></div>
             <div><label><input type="password" th:field="*{password}" placeholder="Password"/> </label></div>

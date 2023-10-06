@@ -33,7 +33,7 @@ public class PMBUserController {
 	@GetMapping("/newUser")
 	public String newUserAccess(Model model) {
         PMBUser user = new PMBUser();
-        model.addAttribute("user", user);
+        model.addAttribute("pmbuser", user);
 		return "newUser";
 	}
 	
@@ -43,11 +43,11 @@ public class PMBUserController {
 	}
 	
 	@PostMapping("/newUser")
-	public String createNewUser(@ModelAttribute PMBUser user) {
+	public String createNewUser(Model model, @ModelAttribute("pmbuser") PMBUser user) {
 		PMBUser userCheck = userServ.createNewUser(user);
 
 		if( userCheck==null ) {
-			// avec un message d'erreur ? comment ?
+			model.addAttribute("exist", true);
 			return "newUser";
 		}
 

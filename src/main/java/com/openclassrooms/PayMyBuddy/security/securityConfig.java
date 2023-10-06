@@ -44,17 +44,17 @@ public class securityConfig {
     
 //    Ces utilisateurs seront définis en mémoire, bien que dans des projets de production 
 // 		cette méthode est à proscrire au bénéfice d’utilisateurs stockées par exemple dans une base de données.
-	@Bean
-	UserDetailsService userDetailsService() {
-		UserDetails user =
-			 User.builder()
-				.username("admin")
-				.password("admin")
-				.roles("ADMIN")
-				.build();
-
-		return new InMemoryUserDetailsManager(user);
-	}
+//	@Bean
+//	UserDetailsService userDetailsService() {
+//		UserDetails user =
+//			 User.builder()
+//				.username("admin")
+//				.password("admin")
+//				.roles("ADMIN")
+//				.build();
+//
+//		return new InMemoryUserDetailsManager(user);
+//	}
 	
 	@Bean
 	PasswordEncoder passwordEncoder() {

@@ -8,6 +8,9 @@
 
 <form action="#" th:action="@{/newUser}" th:object="${pmbuser}" method="post">
 	<h1> Create new account </h1>
+        	<div th:if="${exist}">
+            	<h3> This account already exist ! </h3>
+        	</div>
 	<fieldset>
 		<p>
         	<label>
@@ -21,12 +24,7 @@
             <input type="password" th:field="*{password}" required />
             </label>
         </p>
-        <!-- 
-        <p>
-           	<label th:text="#{msg.pwd.confirm}" />
-            <input type="password" th:field="*{password}" required >
-        </p>        
-         -->
+
         <p> 
         	<button type="submit">Create</button> 
         </p>
