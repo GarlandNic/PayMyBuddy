@@ -25,8 +25,6 @@ public class PMBUserController {
 		
 	@GetMapping("/login")
 	public String login(Model model) {
-        PMBUser user = new PMBUser();
-        model.addAttribute("pmbuser", user);
 		return "login";
 	}
 	
@@ -53,12 +51,5 @@ public class PMBUserController {
 
 		return "home";
 	}
-	
-//	@PostMapping("/login")
-//	public String loginAccess(@ModelAttribute PMBUser user) {
-//		boolean isOK = userServ.checkUser(user);
-//		
-//		return "home";
-//	}
 
 }

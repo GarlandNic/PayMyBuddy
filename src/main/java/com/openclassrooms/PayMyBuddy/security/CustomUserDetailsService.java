@@ -23,13 +23,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Optional<PMBUser> user = userRepo.findById(email);
+		Optional<PMBUser> user = userRepo.findByEmail(email);
 		
 		if(user.isPresent()) {
 			return new User(user.get().getEmail(), user.get().getPassword(), getGrantedAuthorities("USER"));
 		} else {
-			// message d'erreur
-			return null;
+			throw new UsernameNotFoundException("Invalide email or password");
 		}
 	}
 

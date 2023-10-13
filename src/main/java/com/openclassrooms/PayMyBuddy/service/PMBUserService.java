@@ -26,25 +26,9 @@ public class PMBUserService {
 		if(existingUser.isPresent()) {
 			return null;
 		} else {
-			// encoder mot de passe
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			return userRepo.save(user) ;
 		}
 	}
-
-//	public boolean checkUser(PMBUser user) {
-//		
-//		Optional<PMBUser> existingUser = userRepo.findById(user.getEmail());
-//		
-//		if(existingUser.isPresent()) {
-//			if( existingUser.get().getPassword().equals(user.getPassword()) ) {
-//				return true;
-//			} else {
-//				return false;
-//			}
-//		} else {
-//			return false;
-//		}		
-//	}
 
 }
