@@ -49,7 +49,7 @@ public class PMBUserController {
 			return "newUser";
 		}
 
-		return "home";
+		return "login";
 	}
 
 }
