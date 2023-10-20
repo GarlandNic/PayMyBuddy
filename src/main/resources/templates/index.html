@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Pay My Buddy</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+	    <meta charset="UTF-8">
+		<title>Pay My Buddy</title>
+    </head>
 
-<h1> Hello there ! Welcome to Pay My Buddy :)</h1>
+	<body>
+	
+		<h1> Hello there ! Welcome to Pay My Buddy :)</h1>
 
-<form action="#" th:action="@{/login}" method="get">
-	<button type="submit">Login to my account !</button> 
-</form>
+			<form action="#" th:action="@{/login}" method="get">
+				<button type="submit">Login to my account !</button> 
+			</form>
+	
+		<br/>
 
-<br/>
+		You're new here ?
 
-You're new here ?
+		<form action="#" th:action="@{/newUser}" method="get">
+			<button type="submit">Create a new account !</button> 
+		</form>
 
-<form action="#" th:action="@{/newUser}" method="get">
-	<button type="submit">Create a new account !</button> 
-</form>
-
-</body>
+	</body>
 </html>

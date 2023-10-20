@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>Spring Security Example</title>
+	    <meta charset="UTF-8">
+		<title>Pay My Buddy</title>
     </head>
     <body>
-        <h1>Welcome <span th:remove="tag" sec:authentication="name">user</span> !</h1>
+    
+    	*header : logo à gauche // _Home_ / Tranfer / Profile / Contact / Log off*
+    	
+        <h1>Welcome back <span th:remove="tag" sec:authentication="name">user</span> !</h1>
 
-        <p>What's next ?</p>
+        <p>You currently have ***€ on your account.</p>
+        <p>*bouton : Credit your account (credit.html)*</p>
+        <p>*bouton : send money to a friend (transfer.html)*</p>
+        
+        *footer : mentions légales*
+        
     </body>
 </html>
