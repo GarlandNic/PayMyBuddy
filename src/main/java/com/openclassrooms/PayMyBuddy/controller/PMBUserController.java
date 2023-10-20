@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
 
@@ -17,16 +18,12 @@ public class PMBUserController {
 	
 	@Autowired
 	private PMBUserService userServ;
-	
-//	@RolesAllowed("ADMIN")
-//    @GetMapping("/admin/users")
-//    public void viewAllUsers() {
-//    }
 		
 	@GetMapping("/login")
 	public String login(Model model) {
 		return "login";
 	}
+	
 	
 	@GetMapping("/newUser")
 	public String newUserAccess(Model model) {
@@ -34,12 +31,6 @@ public class PMBUserController {
         model.addAttribute("pmbuser", user);
 		return "newUser";
 	}
-	
-	@GetMapping("/home")
-	public String welcome(Model model) {
-		return "home";
-	}
-	
 	@PostMapping("/newUser")
 	public String createNewUser(Model model, @ModelAttribute("pmbuser") PMBUser user) {
 		PMBUser userCheck = userServ.createNewUser(user);
@@ -51,5 +42,54 @@ public class PMBUserController {
 
 		return "login";
 	}
+	
+	
+	@GetMapping("/home")
+	public String welcome(Model model) {
+		return "home";
+	}
+	
+	@GetMapping("/home/credit")
+	public String credit(Model model) {
+		return "credit";
+	}
+	// Post
+	
+	@GetMapping("/transfer")
+	public String transfer(Model model) {
+		return "transfer";
+	}
+	// Post
+	
+	@GetMapping("/transfer/addFriend")
+	public String addFriend(Model model) {
+        Friend buddy = new Friend();
+        model.addAttribute("friend", buddy);
+		return "addFriend";
+	}
+	// Post
+	
+	@GetMapping("/profile")
+	public String profile(Model model) {
+		return "profile";
+	}
+	
+	@GetMapping("/profile/debit")
+	public String debit(Model model) {
+		return "debit";
+	}
+	// Post
+	
+	@GetMapping("/profile/modifUser")
+	public String modifUser(Model model) {
+		return "modifUser";
+	}
+	// Post
+	
+	@GetMapping("/contact")
+	public String contact(Model model) {
+		return "contact";
+	}
+	// Post
 
 }

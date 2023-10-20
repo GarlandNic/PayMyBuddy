@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+    	<div th:fragment="html_head">
+    		<meta charset="UTF-8">
+			<title>Pay My Buddy</title>
+    	</div>
+    </head>
+    <body>
+    
+		<div th:fragment="header (here)">
+			**here = Home | Transfer | Profile | Contact**
+	    	*header : logo à gauche // _Home_ / Tranfer / Profile / Contact / Log off*
+		</div>
+    
+    	<div th:fragment="footer">
+            Legal stuff
+		</div>
+        
+    </body>
+</html>

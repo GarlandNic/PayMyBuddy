@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-	    <meta charset="UTF-8">
-		<title>Pay My Buddy</title>
+    	<div th:replace="fragments :: html_head">Static html head</div>
     </head>
 
 	<body>
+    	<div th:replace="fragments :: header(here='Home')">Static header</div>
 		
+		<div th:replace="fragments :: footer">Static footer</div>
 	</body>
 </html>

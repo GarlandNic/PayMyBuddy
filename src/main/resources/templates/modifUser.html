@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Pay My Buddy</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+    	<div th:replace="fragments :: html_head">Static html head</div>
+    </head>
+    
+	<body>
+		<div th:replace="fragments :: header(here='Profile')">Static header</div>
 
 <form action="#" th:action="@{/newUser}" th:object="${pmbuser}" method="post">
 	<h1> Create new account </h1>
@@ -31,5 +32,6 @@
 	</fieldset>
 </form>
 
-</body>
+		<div th:replace="fragments :: footer">Static footer</div>
+	</body>
 </html>

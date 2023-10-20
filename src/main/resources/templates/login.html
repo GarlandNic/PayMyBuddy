@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>Pay My Buddy </title>
+    	<div th:replace="fragments :: html_head">Static html head</div>
     </head>
+
     <body>
     
     	<h1> Pay My Buddy</h1>
@@ -34,5 +35,7 @@
     	    	<div><input type="submit" value="Create new user"/></div>
 	        </form>
         </div>
+        
+        <div th:replace="fragments :: footer">Static footer</div>
     </body>
 </html>

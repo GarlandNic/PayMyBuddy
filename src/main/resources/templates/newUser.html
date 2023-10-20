@@ -1,35 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Pay My Buddy</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+    	<div th:replace="fragments :: html_head">Static html head</div>
+    </head>
+	
+	<body>
 
-<form action="#" th:action="@{/newUser}" th:object="${pmbuser}" method="post">
-	<h1> Create new account </h1>
-        	<div th:if="${exist}">
-            	<h3> This account already exist ! </h3>
-        	</div>
-	<fieldset>
-		<p>
-        	<label>
-      		Adresse mail :
-            <input type="email" th:field="*{email}" required />
-            </label>
-        </p>
-        <p>
-           	<label>
-           	Mot de passe :
-            <input type="password" th:field="*{password}" required />
-            </label>
-        </p>
+		<form action="#" th:action="@{/newUser}" th:object="${pmbuser}" method="post">
+			<h1> Create new account </h1>
+        		<div th:if="${exist}">
+            		<h3> This account already exist ! </h3>
+        		</div>
+			<fieldset>
+				<p>
+        		<label>
+      			Adresse mail :
+            	<input type="email" th:field="*{email}" required />
+            	</label>
+        		</p>
+        		<p>
+           		<label>
+           		Mot de passe :
+            	<input type="password" th:field="*{password}" required />
+            	</label>
+        		</p>
 
-        <p> 
-        	<button type="submit">Create</button> 
-        </p>
-	</fieldset>
-</form>
+        		<p> 
+        		<button type="submit">Create</button> 
+        		</p>
+			</fieldset>
+		</form>
 
-</body>
+		<div th:replace="fragments :: footer">Static footer</div>
+	</body>
 </html>

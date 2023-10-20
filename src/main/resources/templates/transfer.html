@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-	    <meta charset="UTF-8">
-		<title>Pay My Buddy</title>
+    	<div th:replace="fragments :: html_head">Static html head</div>
     </head>
 
 	<body>
-		
-		*header*
+		<div th:replace="fragments :: header(here='Transfer')">Static header</div>
 		
 		<h1>Send money</h1>
 		(droite) bouton "Add Connection" (addFriend.html)
@@ -20,7 +18,6 @@
 		 (+ colonne time ?)
 		 
 		
-		*footer*
-		
+		<div th:replace="fragments :: footer">Static footer</div>
 	</body>
 </html>
