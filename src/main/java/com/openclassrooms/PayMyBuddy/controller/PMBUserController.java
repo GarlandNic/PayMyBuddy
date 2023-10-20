@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.openclassrooms.PayMyBuddy.model.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
@@ -23,7 +24,6 @@ public class PMBUserController {
 	public String login(Model model) {
 		return "login";
 	}
-	
 	
 	@GetMapping("/newUser")
 	public String newUserAccess(Model model) {
@@ -53,7 +53,12 @@ public class PMBUserController {
 	public String credit(Model model) {
 		return "credit";
 	}
-	// Post
+	@PostMapping("/home/credit")
+	public String creditation(Model model, @ModelAttribute("creditdto") CreditDto creditDto) {
+		userServ.creditation(creditDto);
+		// check si tout c'est bien passé
+		return "home";
+	}
 	
 	@GetMapping("/transfer")
 	public String transfer(Model model) {
