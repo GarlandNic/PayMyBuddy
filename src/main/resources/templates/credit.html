@@ -16,7 +16,8 @@
 				<p>
         		<label>
       			How much money: 
-            	€<input type="number" th:field="*{value}" value=0 required />
+            	<input type="number" th:field="*{value}" value="0" min="0" style="padding-right:20px; text-align:right;" required/>
+				<span style="margin-left:-20px;">€</span>
             	</label>
         		</p>
         		<p>

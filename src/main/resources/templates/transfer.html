@@ -7,12 +7,30 @@
 	<body>
 		<div th:replace="fragments :: header(here='Transfer')">Static header</div>
 		
-		<h1>Send money</h1>
-		(droite) bouton "Add Connection" (addFriend.html)
+		<h3> Send Money 
+			<span style="float:right; display:flex">
+				<form th:action="@{/transfer/addFriend}" method="get">
+            		<input type="submit" value="Add Connection"/>
+        		</form>
+        	</span>
+        </h3>
 		
 		form : select a connection (menu déroulant) / montant en € / bouton "Pay"
+		<form action="#" th:action="@{/transfer}" th:object="${paybuddydto}" method="post">
+			<fieldset>
+				<select id="dropDownList" th:field="*{friendEmail}" required>
+    				<option value="0" disabled>Select A Connection</option>
+    				<option th:each="buddy : ${buddyList}" th:value="${buddy.friendEmail}" th:text="${buddy.nickname}"></option>
+				</select>
+				
+				<input type="number" th:field="*{valueSend}" value="0" min="0" style="padding-right:20px; text-align:right;" required/>
+				<span style="margin-left:-20px;">€</span>
+            	
+        		<button type="submit">Pay</button> 
+			</fieldset>
+		</form>
 		
-		<h1>My transactions</h1>
+		<h3> My Transactions </h3>
 		 table : Connections / Description / Amount
 		 
 		 (+ colonne time ? ou click pour plus d'info ?)

@@ -12,14 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.openclassrooms.PayMyBuddy.model.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
+import com.openclassrooms.PayMyBuddy.model.PayBuddyDto;
+import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
+import com.openclassrooms.PayMyBuddy.service.TransactionService;
 
 @Controller
 public class PMBUserController {
 	
 	@Autowired
 	private PMBUserService userServ;
-		
+	
+	@Autowired
+	private TransactionService transactionServ;
+	
+	@Autowired
+	private FriendService friendServ;
+	
 	@GetMapping("/login")
 	public String login(Model model) {
 		return "login";
@@ -69,6 +78,29 @@ public class PMBUserController {
 		}
 	}
 	
+	@GetMapping("/transfer")
+	public String transfer(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		filledWithUser(model, userDetails);
+		filledWithTransactions(model, userDetails);
+		return "transfer";
+	}
+	
+	@PostMapping("/transfer")
+	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, PayBuddyDto payDto) {
+		//
+		filledWithUser(model, userDetails);
+		filledWithTransactions(model, userDetails);
+		return "transfer";
+	}
+	
+	@GetMapping("/transfer/addFriend")
+	public String addFriend(Model model) {
+        Friend buddy = new Friend();
+        model.addAttribute("friend", buddy);
+		return "addFriend";
+	}
+	// TODO post mapping
+	
 	@GetMapping("/profile")
 	public String profile(Model model) {
 		return "profile";
@@ -93,9 +125,14 @@ public class PMBUserController {
 	// Post TODO
 	
 	
+	
+	
 	private void filledWithUser(Model model, UserDetails userDetails) {
-		PMBUser user = userServ.getPMBUser(userDetails);
-		model.addAttribute("user",user);
+		model.addAttribute("user", userServ.getPMBUser(userDetails));
+	}
+	
+	private void filledWithTransactions(Model model, UserDetails userDetails) {
+		model.addAttribute("buddyList", friendServ.getFriendList(userDetails.getUsername()));
 	}
 
 }

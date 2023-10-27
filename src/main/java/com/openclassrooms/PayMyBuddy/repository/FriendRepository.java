@@ -6,4 +6,7 @@ import com.openclassrooms.PayMyBuddy.model.Friend;
 
 public interface FriendRepository extends CrudRepository<Friend, Integer> {
 
+	public Iterable<Friend> findByUserEmail(String username);
+	
+
 }
