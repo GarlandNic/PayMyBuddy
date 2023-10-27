@@ -67,20 +67,6 @@ public class PMBUserController {
 		}
 	}
 	
-	@GetMapping("/transfer")
-	public String transfer(Model model) {
-		return "transfer";
-	}
-	// Post TODO
-	
-	@GetMapping("/transfer/addFriend")
-	public String addFriend(Model model) {
-        Friend buddy = new Friend();
-        model.addAttribute("friend", buddy);
-		return "addFriend";
-	}
-	// Post TODO
-	
 	@GetMapping("/profile")
 	public String profile(Model model) {
 		return "profile";
