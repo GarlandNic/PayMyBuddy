@@ -6,6 +6,16 @@
 
 	<body>
     	<div th:replace="fragments :: header(here='Transfer')">Static header</div>
+    	
+    	<div th:if="${error}">
+        	<h3> A problem occurs ! </h3>
+        </div>
+        
+        <form th:action="@{/transfer/addFriend}" method="post">
+            <input type="email" name="friendEmail" placeholder="Email"/>
+            <input type="text" name="nickname" placeholder="Nickname"/>
+        	<input type="submit" value="Save"/></div>
+    	</form>
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

@@ -25,6 +25,6 @@ public class Friend {
 	@Id
 	private String friendEmail;
 	
-	private String nickname="";
+	private String nickname = friendEmail;
 
 }

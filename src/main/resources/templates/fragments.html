@@ -9,15 +9,32 @@
     <body>
     
 		<div th:fragment="header (here)" style="text-align: center" >
-			**here = Home | Transfer | Profile | Contact**
 			<br/>
 			<span style="float:left">
         		logo
     		</span>
-			<span th:text="${user.email} ?: 'not connected'">
+			Connected as <span th:text="${user.email} ?: 'nobody'">
     		</span>
-		    <span style="float:right">
-        		_Home_ / Tranfer / Profile / Contact / Log off
+		    <span style="float:right; display:flex">
+				<form th:action="@{/home}" method="get">
+            		<input type="submit" value="Home" th:unless="${here == 'Home'}"/>
+            		<span th:if="${here == 'Home'}">Home</span>
+        		</form>
+				<form th:action="@{/transfer}" method="get">
+            		<input type="submit" value="Transfer" th:unless="${here == 'Tranfer'}"/>
+            		<span th:if="${here == 'Tranfer'}">Transfer</span>
+        		</form>
+				<form th:action="@{/profile}" method="get">
+            		<input type="submit" value="Profile" th:unless="${here == 'Profile'}"/>
+            		<span th:if="${here == 'Profile'}">Profile</span>
+        		</form>
+				<form th:action="@{/contact}" method="get">
+            		<input type="submit" value="Contact" th:unless="${here == 'Contact'}"/>
+            		<span th:if="${here == 'Contact'}">Contact</span>
+        		</form>
+				<form th:action="@{/logout}" method="post">
+            		<input type="submit" value="Sign Out"/>
+        		</form>
     		</span>
     		<hr/>
     		<br/>

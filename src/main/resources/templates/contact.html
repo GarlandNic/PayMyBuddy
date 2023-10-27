@@ -8,9 +8,18 @@
     	<div th:replace="fragments :: header(here='Contact')">Static header</div>
     	
     	<p>
-		*informations sur l'application*
-		*formulaire de contact*
+    		Pay My Buddy : version 0.4
+    		<br/>
+    		By : Nicolas Garland
+    		<br/>
+    		Github : https://github.com/GarlandNic/PayMyBuddy
+    		<br/>
 		</p>
+		<form th:action="@{/message}" method="post">
+			<h3> Contact us !</h3>
+			<input type="text" name="message"/>
+			<input type="submit" value="Send"/>
+		</form>
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

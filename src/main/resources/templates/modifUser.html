@@ -6,7 +6,9 @@
     
 	<body>
 		<div th:replace="fragments :: header(here='Profile')">Static header</div>
-
+		
+		pour modifier le mot de passe (on verra plus tard)
+<!-- copié de newUser
 <form action="#" th:action="@{/newUser}" th:object="${pmbuser}" method="post">
 	<h1> Create new account </h1>
         	<div th:if="${exist}">
@@ -31,7 +33,7 @@
         </p>
 	</fieldset>
 </form>
-
+-->
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>
 </html>

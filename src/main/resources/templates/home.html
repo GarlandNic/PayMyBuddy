@@ -6,9 +6,9 @@
     
     <body>
     	<div th:replace="fragments :: header(here='Home')">Static header</div>
-    	
+    	<!--
         <h1>Welcome back <span th:remove="tag" sec:authentication="name">user</span> !</h1>
-
+		-->
         <h1>Welcome back <span th:text="${user.email}">user</span> !</h1>
 
         <p>You currently have <span th:text="${user.balance}">***</span>€ on your account.</p>
