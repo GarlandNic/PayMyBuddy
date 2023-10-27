@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class CreditDto {
 	
-	private int value;
+	private int value; // in euro
 	
-	private int iban;
+	private String iban;
 
 }

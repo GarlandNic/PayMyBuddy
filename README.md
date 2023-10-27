@@ -7,14 +7,18 @@ Auteur : Nicolas Garland
 ![Diagramme des données](Readme_image/diagramme_donnees.png)
 
 
-Hello
+TODo list
 
-Tu dois
+o index				html: ok
+- o login			html: ok ; 	get: ok
+- o newUser			html: ok ; 	get: ok ; 	post: ok
+o home				html: ok ;	get: ok
+- o credit			html: ok ;	get: ok ; 	post: ok
+o transfer			html: 10% ; get: 10% ; 	post: 0%
+- o addFriend		html: 90% ; get: 90% ; 	post: 0%
+o profile			html: 10% ; get: 10%
+- o modifUser		html: 10% ; get: 10% ; 	post: 0%
+- o debit			html: 10% ; get: 10% ; 	post: 0%
+- o listOfFriend	html: 0% ; 	get: 0% ; 	post (remove): 0%
+- o contact			html: 10% ; get: 10% ; 	post (send message): 0%
 
-1/ Faire la route de creation du user 
-
-le /userLogin qui appelle le service ainsi que le front avec le get et le post
-le /newUser qui appelle le service de creation du user qui appelle le repository pour créer le user avec le get et le post
-
-
-Cordialement

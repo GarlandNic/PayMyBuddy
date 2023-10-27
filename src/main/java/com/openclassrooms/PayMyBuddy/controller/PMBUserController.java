@@ -52,8 +52,10 @@ public class PMBUserController {
 	@GetMapping("/home/credit")
 	public String credit(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		filledWithUser(model, userDetails);
+		model.addAttribute("creditdto", new CreditDto());
 		return "credit";
 	}
+	
 	@PostMapping("/home/credit")
 	public String creditation(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
 		boolean isOK = userServ.creditation(creditDto, userDetails);

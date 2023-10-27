@@ -11,7 +11,7 @@
 		-->
         <h1>Welcome back <span th:text="${user.email}">user</span> !</h1>
 
-        <p>You currently have <span th:text="${user.balance}">***</span>€ on your account.</p>
+        <p>You currently have <span th:text="${#numbers.formatDecimal(user.balance/100.00, 1, 'COMMA', 2, 'POINT')}">***.**</span> on your account.</p>
         
         <p>
         	<form action="#" th:action="@{/home/credit}" method="get">

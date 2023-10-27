@@ -6,12 +6,31 @@
 
 	<body>
     	<div th:replace="fragments :: header (here='Home')">Static header</div>
-    	
-    	<div th:if="${error}">
-        	<h3> A problem occurs ! </h3>
-        </div>
         
-        formulaire combien on met / iban
+    	<form action="#" th:action="@{/home/credit}" th:object="${creditdto}" method="post">
+			<h1>Credit your account</h1>
+        		<div th:if="${error}">
+            		<h3> A problem occurs ! </h3>
+        		</div>
+			<fieldset>
+				<p>
+        		<label>
+      			How much money: 
+            	€<input type="number" th:field="*{value}" value=0 required />
+            	</label>
+        		</p>
+        		<p>
+           		<label>
+           		From your bank account (iban):
+            	<input type="text" th:field="*{iban}" value="***************************" required />
+            	</label>
+        		</p>
+
+        		<p> 
+        		<button type="submit">Credit</button> 
+        		</p>
+			</fieldset>
+		</form>
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

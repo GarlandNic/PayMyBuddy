@@ -23,7 +23,7 @@ public class PMBUserService {
 	
 	public PMBUser createNewUser(PMBUser user) {
 		
-		Optional<PMBUser> existingUser = userRepo.findById(user.getEmail());
+		Optional<PMBUser> existingUser = userRepo.findByEmail(user.getEmail());
 		
 		if(existingUser.isPresent()) {
 			return null;
@@ -34,16 +34,32 @@ public class PMBUserService {
 	}
 
 	public boolean creditation(CreditDto creditDto, UserDetails userDetails) {
-		// check iban
-		userDetails.getUsername();
-		// mis à jour de la DB avec plus sur la balance 
-		// TODO
-		return false;
+		if(creditDto.getValue()>0 && IbanChecker(creditDto.getIban())) {
+			boolean transaction = takingFromBank(creditDto.getIban(), creditDto.getValue());
+			if(transaction) {
+				PMBUser user = getPMBUser(userDetails);
+				user.setBalance(user.getBalance() + creditDto.getValue()*100);
+				userRepo.save(user);
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 	public PMBUser getPMBUser(UserDetails userDetails) {
 		Optional<PMBUser> user = userRepo.findByEmail(userDetails.getUsername());
 		return user.get();	
+	}
+	
+	
+	private boolean IbanChecker(String iban) {
+		return true;
+	}
+	private boolean takingFromBank(String iban, int value) {
+		return true;
 	}
 
 }
