@@ -9,9 +9,21 @@
     	
         <h1>Welcome back <span th:remove="tag" sec:authentication="name">user</span> !</h1>
 
-        <p>You currently have ***€ on your account.</p>
-        <p>*bouton : Credit your account (credit.html)*</p>
-        <p>*bouton : send money to a friend (transfer.html)*</p>
+        <h1>Welcome back <span th:text="${user.email}">user</span> !</h1>
+
+        <p>You currently have <span th:text="${user.balance}">***</span>€ on your account.</p>
+        
+        <p>
+        	<form action="#" th:action="@{/home/credit}" method="get">
+				<button type="submit">Credit your account</button> 
+			</form>
+		</p>
+			
+        <p>
+        	<form action="#" th:action="@{/transfer}" method="get">
+				<button type="submit">Send money to a buddy</button> 
+			</form>
+		</p>
         
     	<div th:replace="fragments :: footer">Static footer</div>
     </body>

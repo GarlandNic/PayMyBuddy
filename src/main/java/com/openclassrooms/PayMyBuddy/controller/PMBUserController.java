@@ -1,6 +1,8 @@
 package com.openclassrooms.PayMyBuddy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +13,6 @@ import com.openclassrooms.PayMyBuddy.model.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
-
-import jakarta.annotation.security.RolesAllowed;
 
 @Controller
 public class PMBUserController {
@@ -43,28 +43,35 @@ public class PMBUserController {
 		return "login";
 	}
 	
-	
 	@GetMapping("/home")
-	public String welcome(Model model) {
+	public String welcome(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		filledWithUser(model, userDetails);
 		return "home";
 	}
 	
 	@GetMapping("/home/credit")
-	public String credit(Model model) {
+	public String credit(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		filledWithUser(model, userDetails);
 		return "credit";
 	}
 	@PostMapping("/home/credit")
-	public String creditation(Model model, @ModelAttribute("creditdto") CreditDto creditDto) {
-		userServ.creditation(creditDto);
-		// check si tout c'est bien passé
-		return "home";
+	public String creditation(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
+		boolean isOK = userServ.creditation(creditDto, userDetails);
+		if(isOK) {
+			filledWithUser(model, userDetails);
+			return "home";			
+		} else {
+			filledWithUser(model, userDetails);
+			model.addAttribute("error", true);
+			return "credit";
+		}
 	}
 	
 	@GetMapping("/transfer")
 	public String transfer(Model model) {
 		return "transfer";
 	}
-	// Post
+	// Post TODO
 	
 	@GetMapping("/transfer/addFriend")
 	public String addFriend(Model model) {
@@ -72,7 +79,7 @@ public class PMBUserController {
         model.addAttribute("friend", buddy);
 		return "addFriend";
 	}
-	// Post
+	// Post TODO
 	
 	@GetMapping("/profile")
 	public String profile(Model model) {
@@ -83,18 +90,24 @@ public class PMBUserController {
 	public String debit(Model model) {
 		return "debit";
 	}
-	// Post
+	// Post TODO
 	
 	@GetMapping("/profile/modifUser")
 	public String modifUser(Model model) {
 		return "modifUser";
 	}
-	// Post
+	// Post TODO
 	
 	@GetMapping("/contact")
 	public String contact(Model model) {
 		return "contact";
 	}
-	// Post
+	// Post TODO
+	
+	
+	private void filledWithUser(Model model, UserDetails userDetails) {
+		PMBUser user = userServ.getPMBUser(userDetails);
+		model.addAttribute("user",user);
+	}
 
 }

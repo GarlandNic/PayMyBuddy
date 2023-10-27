@@ -8,14 +8,27 @@
     </head>
     <body>
     
-		<div th:fragment="header (here)">
+		<div th:fragment="header (here)" style="text-align: center" >
 			**here = Home | Transfer | Profile | Contact**
-	    	*header : logo à gauche // _Home_ / Tranfer / Profile / Contact / Log off*
-	    	
+			<br/>
+			<span style="float:left">
+        		logo
+    		</span>
+			<span th:text="${user.email} ?: 'not connected'">
+    		</span>
+		    <span style="float:right">
+        		_Home_ / Tranfer / Profile / Contact / Log off
+    		</span>
+    		<hr/>
+    		<br/>
 		</div>
     
     	<div th:fragment="footer">
+    		<br/>
+    		<hr/>
+    		<br/>
             Legal stuff
+            <br/>
 		</div>
         
     </body>

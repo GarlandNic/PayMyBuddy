@@ -3,6 +3,7 @@ package com.openclassrooms.PayMyBuddy.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,10 +33,17 @@ public class PMBUserService {
 		}
 	}
 
-	public void creditation(CreditDto creditDto) {
+	public boolean creditation(CreditDto creditDto, UserDetails userDetails) {
 		// check iban
+		userDetails.getUsername();
 		// mis à jour de la DB avec plus sur la balance 
-		
+		// TODO
+		return false;
+	}
+
+	public PMBUser getPMBUser(UserDetails userDetails) {
+		Optional<PMBUser> user = userRepo.findByEmail(userDetails.getUsername());
+		return user.get();	
 	}
 
 }
