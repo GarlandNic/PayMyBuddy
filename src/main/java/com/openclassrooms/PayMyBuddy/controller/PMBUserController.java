@@ -109,7 +109,8 @@ public class PMBUserController {
 	}
 	
 	@GetMapping("/profile")
-	public String profile(Model model) {
+	public String profile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		filledWithUser(model, userDetails);
 		return "profile";
 	}
 	
