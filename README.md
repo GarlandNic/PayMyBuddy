@@ -14,7 +14,7 @@ o index				html: ok
 - o newUser			html: ok ; 	get: ok ; 	post: ok
 o home				html: ok ;	get: ok
 - o credit			html: ok ;	get: ok ; 	post: ok
-o transfer			html: 70% ; get: 50% ; 	post: 10%
+o transfer			html: 70% ; get: 50% ; 	post: 20%
 	o bank repository ? 0%
 	o plus d'infos sur les transferts (html) : 0%
 	o pagination des resultats (html) : 0% 

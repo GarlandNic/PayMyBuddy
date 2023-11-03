@@ -46,6 +46,8 @@ public class TransactionController {
 		transaction.setTransferTime(LocalDate.now());
 		transaction.setFee(transactionServ.computeFee(transaction.getSendValue()));
 		
+		transactionServ.save(transaction);
+		
 		return "redirect:/transfer";
 	}
 

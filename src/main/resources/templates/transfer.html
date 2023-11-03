@@ -51,10 +51,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="income : ${incomesList}" title="From: ${income.senderEmail} \n To ${income.recipientEmail} \n Value: ${income.sendValue} \n Fee: ${income.fee} \n Time: ${income.transferTime} \n Description: ${income.description}">
-					<td> <span th:text="income.senderEmail">nickname</span> </td>
-					<td> <span th:txt="income.description">Transaction.description</span> </td>
-					<td> +<span th:text="income.getReceivedValue()">Transaction.value</span>€ </td>
+				<tr th:each="income : ${incomesList}">
+					<td> <span th:text="${income.senderEmail}"title="From: ${income.senderEmail} 
+To ${income.recipientEmail} 
+Value: ${income.sendValue} 
+Fee: ${income.fee} 
+Time: ${income.transferTime} 
+Description: ${income.description}">nickname</span> </td>
+					<td> <span th:txt="${income.description}"title="From: ${income.senderEmail} 
+To ${income.recipientEmail} 
+Value: ${income.sendValue} 
+Fee: ${income.fee} 
+Time: ${income.transferTime} 
+Description: ${income.description}">Transaction.description</span> </td>
+					<td> +<span th:text="${income.getReceivedValue()}"title="From: ${income.senderEmail} 
+To ${income.recipientEmail} 
+Value: ${income.sendValue} 
+Fee: ${income.fee} 
+Time: ${income.transferTime} 
+Description: ${income.description}">Transaction.value</span>€ </td>
 				</tr>
 			</tbody>
 		</table>
@@ -67,10 +82,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="income : ${outcomesList}" title="From: ${outcome.senderEmail} \n To ${outcome.recipientEmail} \n Value: ${outcome.sendValue} \n Fee: ${outcome.fee} \n Time: ${outcome.transferTime} \n Description: ${outcome.description}">
-					<td> <span th:text="outcome.recipientEmail">nickname</span> </td>
-					<td> <span th:txt="outcome.description">Transaction.description</span> </td>
-					<td> -<span th:text="outcome.getSendValue()">Transaction.value</span>€ </td>
+				<tr th:each="outcome : ${outcomesList}" title="From: ${outcome.senderEmail} \n To ${outcome.recipientEmail} \n Value: ${outcome.sendValue} \n Fee: ${outcome.fee} \n Time: ${outcome.transferTime} \n Description: ${outcome.description}">
+					<td> <span th:text="${outcome.recipientEmail}">nickname</span> </td>
+					<td> <span th:txt="${outcome.description}">Transaction.description</span> </td>
+					<td> -<span th:text="${outcome.sendValue}">Transaction.value</span>€ </td>
 				</tr>
 			</tbody>
 		</table>

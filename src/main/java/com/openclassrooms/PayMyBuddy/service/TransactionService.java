@@ -37,4 +37,8 @@ public class TransactionService {
 		return (int) Math.ceil(sendValue*TAXE);
 	}
 
+	public void save(Transaction transaction) {
+		transactionRepo.save(transaction);
+	}
+
 }
