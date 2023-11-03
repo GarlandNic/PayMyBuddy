@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
@@ -37,7 +38,8 @@ public class Transaction {
 	private LocalDate transferTime;
 	
 	// value in cents
-	private int value=0;
+	@Column(name="value")
+	private int sendValue=0;
 	
 	// not a computed value because fee rate could change over time
 	private int fee=0;
@@ -48,22 +50,17 @@ public class Transaction {
 	
 //	private static final Long MAX_INT = 4294967295L;
 	
-	public void setValue(int val) throws UnexpectedException {
+	public void setSendValue(int val) throws UnexpectedException {
 		if(val<0) {
 			logger.error("negative value");
 			throw new UnexpectedException("negative value");
 		} else {
-			this.value = val;
+			this.sendValue = val;
 		}
-	}	
+	}
 	
-	public void setFee(int f) throws UnexpectedException {
-		if(f<0) {
-			logger.error("negative fee");
-			throw new UnexpectedException("negative fee");
-		} else {
-			this.fee = f;
-		}
+	public int getReceivedValue() {
+		return (this.sendValue - this.fee);
 	}
 
 }

@@ -21,8 +21,8 @@
             		<span th:if="${here == 'Home'}">Home</span>
         		</form>
 				<form th:action="@{/transfer}" method="get">
-            		<input type="submit" value="Transfer" th:unless="${here == 'Tranfer'}"/>
-            		<span th:if="${here == 'Tranfer'}">Transfer</span>
+            		<input type="submit" value="Transfer" th:unless="${here == 'Transfer'}"/>
+            		<span th:if="${here == 'Transfer'}">Transfer</span>
         		</form>
 				<form th:action="@{/profile}" method="get">
             		<input type="submit" value="Profile" th:unless="${here == 'Profile'}"/>

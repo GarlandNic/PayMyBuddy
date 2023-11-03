@@ -78,7 +78,8 @@ public class PMBUserController {
 	// Post TODO
 	
 	@GetMapping("/contact")
-	public String contact(Model model) {
+	public String contact(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		userServ.filledWithUser(model, userDetails);
 		return "contact";
 	}
 	// Post TODO

@@ -19,12 +19,12 @@ o transfer			html: 70% ; get: 50% ; 	post: 10%
 	o plus d'infos sur les transferts (html) : 0%
 	o pagination des resultats (html) : 0% 
 	o commit et rollback ?? 0%
-- o addFriend		html: 90% ; get: 90% ; 	post: 90%
+- o addFriend		html: ok ; 	get: ok ; 	post: ok
 o profile			html: 10% ; get: 10%
 - o modifUser		html: 10% ; get: 10% ; 	post: 0%
 - o debit			html: 10% ; get: 10% ; 	post: 0%
 - o listOfFriend	html: 0% ; 	get: 0% ; 	post (remove): 0%
-- o contact			html: 10% ; get: 10% ; 	post (send message): 0%
+- o contact			html: 50% ; get: 10% ; 	post (send message): 0%
 
 o securisation de l'acces à la base de donnée (mot de passe administrateur pas dans les properties)
 o mise en page, CSS
@@ -32,7 +32,7 @@ o tests
 
 
 bankService et repo
-Transactions : ne t'embête pas
+Transactions recu/envoyees : ne t'embête pas à les fusionner
 redirect:/la-ou-on-veut-aller  -> get /la-ou-on-veut-aller
 découpage des controller
 pagination : bootstrap table

@@ -11,6 +11,8 @@ import com.openclassrooms.PayMyBuddy.repository.TransactionRepository;
 @Service
 public class TransactionService {
 	
+	static final double TAXE=0.005;
+	
 	@Autowired
 	private TransactionRepository transactionRepo;
 
@@ -24,11 +26,15 @@ public class TransactionService {
 
 
 	public void filledWithIncomes(Model model, UserDetails userDetails) {
-		model.addAttribute("transferList", this.getTransferIncomes(userDetails.getUsername()));
+		model.addAttribute("incomesList", this.getTransferIncomes(userDetails.getUsername()));
 	}
 
 	public void filledWithOutcomes(Model model, UserDetails userDetails) {
-		model.addAttribute("transferList", this.getTransferOutcomes(userDetails.getUsername()));
+		model.addAttribute("outcomesList", this.getTransferOutcomes(userDetails.getUsername()));
+	}
+
+	public int computeFee(int sendValue) {
+		return (int) Math.ceil(sendValue*TAXE);
 	}
 
 }
