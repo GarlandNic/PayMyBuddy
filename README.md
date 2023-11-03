@@ -15,8 +15,9 @@ o index				html: ok
 o home				html: ok ;	get: ok
 - o credit			html: ok ;	get: ok ; 	post: ok
 o transfer			html: 70% ; get: 50% ; 	post: 10%
+	o bank repository ? 0%
 	o plus d'infos sur les transferts (html) : 0%
-	o pagination des resultats (html) : 0%
+	o pagination des resultats (html) : 0% 
 	o commit et rollback ?? 0%
 - o addFriend		html: 90% ; get: 90% ; 	post: 90%
 o profile			html: 10% ; get: 10%
@@ -28,3 +29,10 @@ o profile			html: 10% ; get: 10%
 o securisation de l'acces à la base de donnée (mot de passe administrateur pas dans les properties)
 o mise en page, CSS
 o tests
+
+
+bankService et repo
+Transactions : ne t'embête pas
+redirect:/la-ou-on-veut-aller  -> get /la-ou-on-veut-aller
+découpage des controller
+pagination : bootstrap table

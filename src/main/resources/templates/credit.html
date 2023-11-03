@@ -9,7 +9,7 @@
         
     	<form action="#" th:action="@{/home/credit}" th:object="${creditdto}" method="post">
 			<h1>Credit your account</h1>
-        		<div th:if="${error}">
+        		<div th:if="${param.error}">
             		<h3> A problem occurs ! </h3>
         		</div>
 			<fieldset>

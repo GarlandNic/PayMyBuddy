@@ -26,10 +26,19 @@
 				<span style="margin-left:-20px;">€</span>
             	
         		<button type="submit">Pay</button> 
+        		
 			</fieldset>
 		</form>
 		
-		<h3> My Transactions </h3>
+		<div th:with="way='received'">
+		<h3> My Transactions 
+			<span style="float:right; display:flex">
+				<label><input type="radio" value="received" th:field="${way}">
+                Received</label>
+				<label><input type="radio" value="sent" th:field="${way}">
+                Sent</label>
+       		</span>
+       	</h3>
 		
 		<table>
 			<thead>
@@ -48,6 +57,7 @@
 			</tbody>
 		</table>
 		 (+ click pour plus d'info ? (date, taxe))
+		</div>
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.openclassrooms.PayMyBuddy.model.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
@@ -33,33 +34,13 @@ public class PMBUserService {
 		}
 	}
 
-	public boolean creditation(CreditDto creditDto, UserDetails userDetails) {
-		if(creditDto.getValue()>0 && IbanChecker(creditDto.getIban())) {
-			boolean transaction = takingFromBank(creditDto.getIban(), creditDto.getValue());
-			if(transaction) {
-				PMBUser user = getPMBUser(userDetails);
-				user.setBalance(user.getBalance() + creditDto.getValue()*100);
-				userRepo.save(user);
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}
-
 	public PMBUser getPMBUser(UserDetails userDetails) {
 		Optional<PMBUser> user = userRepo.findByEmail(userDetails.getUsername());
 		return user.get();	
 	}
 	
-	
-	private boolean IbanChecker(String iban) {
-		return true;
-	}
-	private boolean takingFromBank(String iban, int value) {
-		return true;
+	public void filledWithUser(Model model, UserDetails userDetails) {
+		model.addAttribute("user", this.getPMBUser(userDetails));
 	}
 
 }
