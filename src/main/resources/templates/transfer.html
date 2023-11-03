@@ -7,13 +7,13 @@
 	<body>
 		<div th:replace="fragments :: header(here='Transfer')">Static header</div>
 		
-		<h3> Send Money 
-			<span style="float:right; display:flex">
-				<form th:action="@{/transfer/addFriend}" method="get">
-            		<input type="submit" value="Add Connection"/>
-        		</form>
-        	</span>
-        </h3>
+		<form th:action="@{/transfer/addFriend}" method="get">
+			<h3> Send Money 
+				<span style="float:right; display:flex">
+        	   		<input type="submit" value="Add Connection"/>
+        		</span>
+        	</h3>
+   		</form>
 		
 		form : select a connection (menu déroulant) / montant en € / bouton "Pay"
 		<form action="#" th:action="@{/transfer}" th:object="${paybuddydto}" method="post">
@@ -31,10 +31,24 @@
 		</form>
 		
 		<h3> My Transactions </h3>
-		 table : Connections / Description / Amount
-		 
-		 (+ colonne time ? ou click pour plus d'info ?)
-		 
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Connections</th>
+					<th>Description</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="">
+					<td> <span>nickname</span> </td>
+					<td> <span>Transaction.description</span> </td>
+					<td> <span>Transaction.value</span> </td>
+				</tr>
+			</tbody>
+		</table>
+		 (+ click pour plus d'info ? (date, taxe))
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

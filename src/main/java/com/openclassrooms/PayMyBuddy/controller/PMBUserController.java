@@ -133,6 +133,7 @@ public class PMBUserController {
 	
 	private void filledWithTransactions(Model model, UserDetails userDetails) {
 		model.addAttribute("buddyList", friendServ.getFriendList(userDetails.getUsername()));
+		model.addAttribute("transferList", transactionServ.getTransferList(userDetails.getUsername()));
 	}
 
 }
