@@ -18,7 +18,7 @@ o transfer			html: 70% ; get: 50% ; 	post: 10%
 	o plus d'infos sur les transferts (html) : 0%
 	o pagination des resultats (html) : 0%
 	o commit et rollback ?? 0%
-- o addFriend		html: 90% ; get: 90% ; 	post: 0%
+- o addFriend		html: 90% ; get: 90% ; 	post: 90%
 o profile			html: 10% ; get: 10%
 - o modifUser		html: 10% ; get: 10% ; 	post: 0%
 - o debit			html: 10% ; get: 10% ; 	post: 0%

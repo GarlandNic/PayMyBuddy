@@ -7,14 +7,23 @@
 	<body>
     	<div th:replace="fragments :: header(here='Transfer')">Static header</div>
     	
-    	<div th:if="${error}">
-        	<h3> A problem occurs ! </h3>
-        </div>
+        <form th:action="@{/transfer/addFriend}" th:object="buddy" method="post">
+	        <h3> Who's your buddy ? </h3>
         
-        <form th:action="@{/transfer/addFriend}" method="post">
-            <input type="email" name="friendEmail" placeholder="Email"/>
-            <input type="text" name="nickname" placeholder="Nickname"/>
-        	<input type="submit" value="Save"/></div>
+    		<div th:if="${error}">
+        		<h3> A problem occurs ! </h3>
+        	</div>
+        	
+        	<fieldset>
+				<label>
+					Email address: <input type="email" name="friendEmail" placeholder="Email"/>
+				</label>
+				<label>
+					Nickname: <input type="text" name="nickname" placeholder="Nickname"/>
+				</label>
+            	
+        		<button type="submit">Save</button>
+        	</fieldset>
     	</form>
 		
 		<div th:replace="fragments :: footer">Static footer</div>

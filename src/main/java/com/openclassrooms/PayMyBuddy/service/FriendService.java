@@ -16,4 +16,8 @@ public class FriendService {
 		return friendRepo.findByUserEmail(username);
 	}
 
+	public void save(Friend buddy) {
+		friendRepo.save(buddy);
+	}
+
 }

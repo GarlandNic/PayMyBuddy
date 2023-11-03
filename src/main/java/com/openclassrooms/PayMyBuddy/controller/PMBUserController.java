@@ -94,12 +94,19 @@ public class PMBUserController {
 	}
 	
 	@GetMapping("/transfer/addFriend")
-	public String addFriend(Model model) {
+	public String addFriendForm(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         Friend buddy = new Friend();
-        model.addAttribute("friend", buddy);
+        buddy.setUserEmail(userDetails.getUsername());
+        model.addAttribute("buddy", buddy);
 		return "addFriend";
 	}
-	// TODO post mapping
+	@PostMapping("/transfer/addFriend")
+	public String addFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy) {
+        friendServ.save(buddy);
+		filledWithUser(model, userDetails);
+		filledWithTransactions(model, userDetails);
+		return "transfer";
+	}
 	
 	@GetMapping("/profile")
 	public String profile(Model model) {
