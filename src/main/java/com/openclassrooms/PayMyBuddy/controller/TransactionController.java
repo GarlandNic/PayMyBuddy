@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.openclassrooms.PayMyBuddy.model.CreditDto;
-import com.openclassrooms.PayMyBuddy.model.PayBuddyDto;
+import com.openclassrooms.PayMyBuddy.dto.CreditDto;
+import com.openclassrooms.PayMyBuddy.dto.PayBuddyDto;
 import com.openclassrooms.PayMyBuddy.model.Transaction;
 import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;

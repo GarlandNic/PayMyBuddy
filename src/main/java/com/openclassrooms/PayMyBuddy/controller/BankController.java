@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.openclassrooms.PayMyBuddy.model.CreditDto;
 import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
 import com.openclassrooms.PayMyBuddy.service.TransactionService;
+import com.openclassrooms.PayMyBuddy.dto.CreditDto;
 import com.openclassrooms.PayMyBuddy.service.BankService;
 
 @Controller

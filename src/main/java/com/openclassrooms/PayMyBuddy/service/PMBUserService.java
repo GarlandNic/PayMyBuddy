@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.openclassrooms.PayMyBuddy.model.CreditDto;
+import com.openclassrooms.PayMyBuddy.dto.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 import com.openclassrooms.PayMyBuddy.security.CustomUserDetailsService;

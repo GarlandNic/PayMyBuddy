@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.openclassrooms.PayMyBuddy.model.CreditDto;
+import com.openclassrooms.PayMyBuddy.dto.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 
