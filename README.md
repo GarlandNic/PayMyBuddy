@@ -9,8 +9,6 @@ Auteur : Nicolas Garland
 
 TODo list
 
-màj sql !!
-
 o index				html: ok
 - o login			html: ok ; 	get: ok
 - o newUser			html: ok ; 	get: ok ; 	post: ok
@@ -23,11 +21,11 @@ o transfer			html: ok ;	get: ok ; 	post (send money): ok
 	o commit et rollback ?? 0%
 - o addFriend		html: ok ; 	get: ok ; 	post: ok
 	o message de pas ok 0%
-o profile			html: 95% ; get: 95%
-- o modifUser		html: 95% ; get: 95% ; 	post: 95%
-- o debit			html: 95% ; get: 95% ; 	post: 95%
-- - o supprUser		95%
-- o listOfFriend	html: 95% ; get: 95% ; 	post (remove): 95%
+o profile			html: ok ; get: ok
+- o modifUser		html: ok ; get: ok ; 	post: ok
+- o debit			html: ok ; get: ok ; 	post: ok
+- - o supprUser		ok
+- o listOfFriend	html: ok ; get: ok ; 	post (remove): ok
 - o contact			html: 50% ; get: 60% ; 	post (send message): 0%
 
 o securisation de l'acces à la base de donnée (mot de passe administrateur pas dans les properties)
