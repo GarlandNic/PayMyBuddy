@@ -11,7 +11,7 @@ import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 
 @Service
-public class bankService {
+public class BankService {
 	
 	@Autowired
 	PMBUserRepository userRepo;

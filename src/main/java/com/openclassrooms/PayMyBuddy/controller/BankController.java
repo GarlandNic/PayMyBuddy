@@ -13,16 +13,16 @@ import com.openclassrooms.PayMyBuddy.model.CreditDto;
 import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
 import com.openclassrooms.PayMyBuddy.service.TransactionService;
-import com.openclassrooms.PayMyBuddy.service.bankService;
+import com.openclassrooms.PayMyBuddy.service.BankService;
 
 @Controller
-public class bankController {
+public class BankController {
 	
 	@Autowired
 	private PMBUserService userServ;
 	
 	@Autowired
-	private bankService bankServ;
+	private BankService bankServ;
 	
 	@GetMapping("/home/credit")
 	public String credit(Model model, @AuthenticationPrincipal UserDetails userDetails) {
