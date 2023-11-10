@@ -18,8 +18,11 @@ public class FriendService {
 		return friendRepo.findByUserEmail(username);
 	}
 
-	public void save(Friend buddy) {
+	public boolean save(Friend buddy) {
+		// check if friend is in the DB
 		friendRepo.save(buddy);
+		
+		return true;
 	}
 
 	public void filledWithFriends(Model model, UserDetails userDetails) {

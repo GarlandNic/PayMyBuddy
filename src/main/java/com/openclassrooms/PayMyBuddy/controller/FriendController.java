@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,19 +35,26 @@ public class FriendController {
 	@PostMapping("/transfer/addFriend")
 	public String addFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy) {
 		buddy.setUserEmail(userDetails.getUsername());
-        friendServ.save(buddy);
-		return "redirect:/transfer";
+        boolean isOk = friendServ.save(buddy);
+        if(isOk) {
+    		return "redirect:/transfer";
+        } else {
+        	// message
+    		return "redirect:/transfer/addFriend";
+        }
 	}
 	
     @PostMapping(value = "/profile/friend", params = "modify")
-	public String modifFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy, @RequestParam(required = true) String modify) {
+	public String modifFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
+			@ModelAttribute("buddy") Friend buddy, @RequestParam(required = true) String modify) {
 		buddy.setUserEmail(userDetails.getUsername());
         friendServ.save(buddy);
 		return "redirect:/profile";
 	}
 
     @PostMapping(value = "/profile/friend", params = "remove")
-	public String supprFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy, @RequestParam(required = true) String remove) {
+	public String supprFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
+			@ModelAttribute("buddy") Friend buddy, @RequestParam(required = true) String remove) {
 		buddy.setUserEmail(userDetails.getUsername());
         friendServ.deleteFriend(buddy);
 		return "redirect:/profile";
