@@ -59,20 +59,17 @@ public class PMBUserController {
 		return "home";
 	}
 
-	
-	
-	
-
-	
 	@GetMapping("/profile")
 	public String profile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
+		friendServ.filledWithFriends(model, userDetails);
 		return "profile";
 	}
 
 	
 	@GetMapping("/profile/modifUser")
-	public String modifUser(Model model) {
+	public String modifUser(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		userServ.filledWithUser(model, userDetails);
 		return "modifUser";
 	}
 	// Post TODO

@@ -14,11 +14,13 @@ o index				html: ok
 - o newUser			html: ok ; 	get: ok ; 	post: ok
 o home				html: ok ;	get: ok
 - o credit			html: ok ;	get: ok ; 	post: ok
-o transfer			html: 90% ; get: ok ; 	post (send money): 90%
+o transfer			html: ok ;	get: ok ; 	post (send money): ok
+	o message de transfer mal/bien passé
+	o affichage des transactions : avec nickname au lieu de adresse : 0%
 	o pagination des resultats : 0% 
 	o commit et rollback ?? 0%
 - o addFriend		html: ok ; 	get: ok ; 	post: ok
-o profile			html: 10% ; get: 10%
+o profile			html: 80% ; get: 80%
 - o modifUser		html: 10% ; get: 10% ; 	post: 0%
 - o debit			html: 10% ; get: 10% ; 	post: 0%
 - o listOfFriend	html: 0% ; 	get: 0% ; 	post (remove): 0%
