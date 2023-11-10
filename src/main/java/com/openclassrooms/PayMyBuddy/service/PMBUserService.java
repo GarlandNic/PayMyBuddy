@@ -47,4 +47,8 @@ public class PMBUserService {
 		return userRepo.save(user) ;
 	}
 
+	public void supprUser(PMBUser user) {
+		userRepo.delete(user);		
+	}
+
 }

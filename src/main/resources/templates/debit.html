@@ -8,30 +8,33 @@
     	<div th:replace="fragments :: header(here='Profile')">Static header</div>
     	
     	formulaire combien on retire / iban
-    	<form action="#" th:action="@{/home/debit}" th:object="${creditdto}" method="post">
-			<h1>Credit your account</h1>
-        		<div th:if="${param.error}">
-            		<h3> A problem occurs ! </h3>
-        		</div>
+    	<form action="#" th:action="@{/profile/debit}" th:object="${creditdto}" method="post">
+			<h3>Send money to your bank account</h3>
 			<fieldset>
 				<p>
         		<label>
       			How much money: 
-            	<input type="number" th:field="*{value}" value="0" min="0" style="padding-right:20px; text-align:right;" required/>
+				<input type="number" th:field="*{value}" min="1" th:max="${user.balance/100}" value="0" style="padding-right:20px; text-align:right;" required/>
 				<span style="margin-left:-20px;">€</span>
             	</label>
         		</p>
         		<p>
            		<label>
-           		From your bank account (iban):
+           		To your bank account (iban):
             	<input type="text" th:field="*{iban}" value="***************************" required />
             	</label>
         		</p>
 
         		<p> 
-        		<button type="submit">Credit</button> 
+        		<button type="submit">Send</button> 
         		</p>
 			</fieldset>
+			
+			<button type="submit" name="everything" formmethod="get">Send everything and remove my profile</button>
+			<p th:if="@{param.everything}">
+				Are you sure ? <button type="submit" formmethod="post" name="everything">Yes I am.</button>
+			</p>
+			
 		</form>
 		
 		<div th:replace="fragments :: footer">Static footer</div>

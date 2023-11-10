@@ -24,9 +24,9 @@ o transfer			html: ok ;	get: ok ; 	post (send money): ok
 - o addFriend		html: ok ; 	get: ok ; 	post: ok
 o profile			html: 95% ; get: 95%
 - o modifUser		html: 95% ; get: 95% ; 	post: 95%
-- o debit			html: 10% ; get: 10% ; 	post: 0%
-- - o supprUser		0%
-- o listOfFriend	html: 90% ; get: 90% ; 	post (remove): 90%
+- o debit			html: 95% ; get: 95% ; 	post: 95%
+- - o supprUser		95%
+- o listOfFriend	html: 95% ; get: 95% ; 	post (remove): 95%
 - o contact			html: 50% ; get: 60% ; 	post (send message): 0%
 
 o securisation de l'acces à la base de donnée (mot de passe administrateur pas dans les properties)

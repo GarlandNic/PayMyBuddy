@@ -22,7 +22,7 @@ public class PMBUser {
 	
 	private String password;
 	
-	private Long balance=0L; // in cent
+	private int balance=0; // in cent
 	// sql integer unsigned : 0 - 4,294,967,295
 	// java int : -2,147,483,648 à 2,147,483,647
 	

@@ -20,7 +20,7 @@
 			You currently have <span th:text="${#numbers.formatDecimal(user.balance/100.00, 1, 'COMMA', 2, 'POINT')}">***.**</span>€ on your account.
 		</p>    
         <p>
-        	<form action="#" th:action="@{/home/debit}" method="get">
+        	<form action="#" th:action="@{/profile/debit}" method="get">
 				<button type="submit">Send to your bank account</button> 
 			</form>
 		</p>

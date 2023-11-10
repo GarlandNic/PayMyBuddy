@@ -13,6 +13,7 @@ import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
 import com.openclassrooms.PayMyBuddy.service.TransactionService;
 import com.openclassrooms.PayMyBuddy.dto.CreditDto;
+import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.BankService;
 
 @Controller
@@ -39,14 +40,30 @@ public class BankController {
 		} else {
 //			userServ.filledWithUser(model, userDetails);
 //			model.addAttribute("error", true);
-			return "redirect:/credit?error";
+			return "redirect:/home/credit?error";
 		}
 	}
 	
 	@GetMapping("/profile/debit")
-	public String debit(Model model) {
+	public String debit(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		userServ.filledWithUser(model, userDetails);
+		model.addAttribute("creditdto", new CreditDto());
 		return "debit";
 	}
-	// Post TODO
+	
+	@PostMapping("/profile/debit")
+	public String debitation(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
+		bankServ.debitation(creditDto, userServ.getPMBUser(userDetails));
+		return "redirect:/profile";
+	}
+
+	@PostMapping(value = "/profile/debit", params="everything")
+	public String debitationTotal(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
+		PMBUser user = userServ.getPMBUser(userDetails);
+		creditDto.setValue(user.getBalance());
+		bankServ.debitation(creditDto, user);
+		userServ.supprUser(user);
+		return "redirect:/login?logout";
+	}
 
 }
