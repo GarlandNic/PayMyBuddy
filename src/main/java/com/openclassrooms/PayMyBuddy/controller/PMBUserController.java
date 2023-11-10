@@ -84,7 +84,12 @@ public class PMBUserController {
 		userServ.filledWithUser(model, userDetails);
 		return "contact";
 	}
-	// Post TODO
+	
+	@PostMapping("/contact")
+	public String message(Model model, @AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("message") String message) {
+		//
+		return "redirect:/contact";
+	}
 	
 
 }
