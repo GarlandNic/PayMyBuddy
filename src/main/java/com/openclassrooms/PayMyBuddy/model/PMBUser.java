@@ -25,5 +25,12 @@ public class PMBUser {
 	private Long balance=0L; // in cent
 	// sql integer unsigned : 0 - 4,294,967,295
 	// java int : -2,147,483,648 à 2,147,483,647
+	
+	public void increaseAccount(int money) {
+		if(money>0) this.balance = this.balance + money;
+	}
+	public void decreaseAccount(int money) {
+		if(money>0) this.balance = this.balance - money;
+	}
 
 }

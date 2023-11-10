@@ -16,31 +16,37 @@
    		</form>
 		
 		<form action="#" th:action="@{/transfer}" th:object="${transaction}" method="post">
-			<fieldset th:with="value=0">
+			<fieldset>
 				<select id="dropDownList" th:field="*{recipientEmail}" required>
     				<option value="0" disabled>Select A Connection</option>
     				<option th:each="buddy : ${buddyList}" th:value="${buddy.friendEmail}" th:text="${buddy.nickname}"></option>
 				</select>
 				
-				<input type="number" th:value="${value}" min="0" style="padding-right:20px; text-align:right;" required/>
-				<input type="hidden" th:field="*{sendValue}" value="100*${value}"/>
+				<input type="number" th:field="*{sendValue}" min="1" th:max="${user.balance/100}" value="0" style="padding-right:20px; text-align:right;" required/>
 				<span style="margin-left:-20px;">€</span>
+				
+				<p>
+				<textarea th:field="*{description}" placeholder="Write a description here" rows="1"></textarea>
+            	</p>
             	
         		<button type="submit">Pay</button> 
         		
 			</fieldset>
 		</form>
 		
-		<div th:with="way='received'">
-		<h3> My Transactions 
-			<span style="float:right; display:flex">
-				<label><input type="radio" value="received" th:name="way" checked>
-                Received</label>
-				<label><input type="radio" value="sent" th:name="way">
-                Sent</label>
-       		</span>
-       	</h3>
-       	<span th:text="${way}"></span>
+		<div th:with="inout=${#strings.toString(param.inout)}">
+		<h3> My Transactions </h3>
+		
+		<span style="float:right; display:flex">
+			<form th:action="@{/transfer}" method="get">
+           		<button type="submit" name="inout" value="received" th:unless="${inout == 'received'}">Received</button>
+           		<span th:if="${inout == 'received'}">Received</span>
+       		</form>
+			<form th:action="@{/transfer}" method="get">
+           		<button type="submit" name="inout" value="sent" th:unless="${inout == 'sent'}">Sent</button>
+           		<span th:if="${inout == 'sent'}">Sent</span>
+       		</form>
+   		</span>       	
 		
 		<table>
 			<thead>
@@ -51,45 +57,48 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="income : ${incomesList}">
-					<td> <span th:text="${income.senderEmail}"title="From: ${income.senderEmail} 
-To ${income.recipientEmail} 
-Value: ${income.sendValue} 
-Fee: ${income.fee} 
-Time: ${income.transferTime} 
-Description: ${income.description}">nickname</span> </td>
-					<td> <span th:txt="${income.description}"title="From: ${income.senderEmail} 
-To ${income.recipientEmail} 
-Value: ${income.sendValue} 
-Fee: ${income.fee} 
-Time: ${income.transferTime} 
-Description: ${income.description}">Transaction.description</span> </td>
-					<td> +<span th:text="${income.getReceivedValue()}"title="From: ${income.senderEmail} 
-To ${income.recipientEmail} 
-Value: ${income.sendValue} 
-Fee: ${income.fee} 
-Time: ${income.transferTime} 
-Description: ${income.description}">Transaction.value</span>€ </td>
+				<tr th:if="${inout == 'received'}" th:each="income : ${incomesList}">
+					<td> <span th:text="${income.senderEmail}" th:title="${'From: '+income.senderEmail+' 
+To: '+income.recipientEmail+' 
+Value: '+income.sendValue/100.0+'€ 
+Fee: '+income.fee/100.0+'€ 
+Time: '+income.transferTime+' 
+Description: '+income.description}">nickname</span> </td>
+					<td> <span th:text="${income.description}" th:title="${'From: '+income.senderEmail+' 
+To: '+income.recipientEmail+' 
+Value: '+income.sendValue/100.0+'€ 
+Fee: '+income.fee/100.0+'€ 
+Time: '+income.transferTime+' 
+Description: '+income.description}">Transaction.description</span> </td>
+					<td> +<span th:text="${income.getReceivedValue()/100.0}" th:title="${'From: '+income.senderEmail+' 
+To: '+income.recipientEmail+' 
+Value: '+income.sendValue/100.0+'€ 
+Fee: '+income.fee/100.0+'€ 
+Time: '+income.transferTime+' 
+Description: '+income.description}">Transaction.value</span>€ </td>
+				</tr>
+				<tr th:if="${inout == 'sent'}" th:each="outcome : ${outcomesList}">
+					<td> <span th:text="${outcome.recipientEmail}" th:title="${'From: '+outcome.senderEmail+'
+To: '+outcome.recipientEmail+'
+Value: '+outcome.sendValue/100.0+'€ 
+Fee: '+outcome.fee/100.0+'€ 
+Time: '+outcome.transferTime+'
+Description: '+outcome.description}">nickname</span> </td>
+					<td> <span th:text="${outcome.description}" th:title="${'From: '+outcome.senderEmail+'
+To: '+outcome.recipientEmail+'
+Value: '+outcome.sendValue/100.0+'€ 
+Fee: '+outcome.fee/100.0+'€ 
+Time: '+outcome.transferTime+'
+Description: '+outcome.description}">Transaction.description</span> </td>
+					<td> -<span th:text="${outcome.sendValue/100.0}" th:title="${'From: '+outcome.senderEmail+'
+To: '+outcome.recipientEmail+'
+Value: '+outcome.sendValue/100.0+'€ 
+Fee: '+outcome.fee/100.0+'€ 
+Time: '+outcome.transferTime+'
+Description: '+outcome.description}">Transaction.value</span>€ </td>
 				</tr>
 			</tbody>
 		</table>
-		<table>
-			<thead>
-				<tr>
-					<th>Connections</th>
-					<th>Description</th>
-					<th>Amount</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="outcome : ${outcomesList}" title="From: ${outcome.senderEmail} \n To ${outcome.recipientEmail} \n Value: ${outcome.sendValue} \n Fee: ${outcome.fee} \n Time: ${outcome.transferTime} \n Description: ${outcome.description}">
-					<td> <span th:text="${outcome.recipientEmail}">nickname</span> </td>
-					<td> <span th:txt="${outcome.description}">Transaction.description</span> </td>
-					<td> -<span th:text="${outcome.sendValue}">Transaction.value</span>€ </td>
-				</tr>
-			</tbody>
-		</table>
-		 (+ click pour plus d'info ? (date, taxe))
 		</div>
 		
 		<div th:replace="fragments :: footer">Static footer</div>

@@ -14,10 +14,8 @@ o index				html: ok
 - o newUser			html: ok ; 	get: ok ; 	post: ok
 o home				html: ok ;	get: ok
 - o credit			html: ok ;	get: ok ; 	post: ok
-o transfer			html: 70% ; get: 50% ; 	post: 20%
-	o bank repository ? 0%
-	o plus d'infos sur les transferts (html) : 0%
-	o pagination des resultats (html) : 0% 
+o transfer			html: 90% ; get: ok ; 	post (send money): 90%
+	o pagination des resultats : 0% 
 	o commit et rollback ?? 0%
 - o addFriend		html: ok ; 	get: ok ; 	post: ok
 o profile			html: 10% ; get: 10%

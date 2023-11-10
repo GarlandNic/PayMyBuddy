@@ -1,9 +1,6 @@
 package com.openclassrooms.PayMyBuddy.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.openclassrooms.PayMyBuddy.dto.CreditDto;
@@ -20,7 +17,22 @@ public class BankService {
 		if(creditDto.getValue()>0 && IbanChecker(creditDto.getIban())) {
 			boolean transaction = takingFromBank(creditDto.getIban(), creditDto.getValue());
 			if(transaction) {
-				user.setBalance(user.getBalance() + creditDto.getValue()*100);
+				user.increaseAccount(creditDto.getValue()*100);
+				userRepo.save(user);
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean debitation(CreditDto creditDto, PMBUser user) {
+		if(creditDto.getValue()>0 && IbanChecker(creditDto.getIban())) {
+			boolean transaction = givingToBank(creditDto.getIban(), creditDto.getValue());
+			if(transaction) {
+				user.decreaseAccount(creditDto.getValue()*100);
 				userRepo.save(user);
 				return true;
 			} else {
@@ -34,7 +46,10 @@ public class BankService {
 	private boolean IbanChecker(String iban) {
 		return true;
 	}
-	private boolean takingFromBank(String iban, int value) {
+	private boolean takingFromBank(String iban, int centValue) {
+		return true;
+	}
+	private boolean givingToBank(String iban, int centValue) {
 		return true;
 	}
 

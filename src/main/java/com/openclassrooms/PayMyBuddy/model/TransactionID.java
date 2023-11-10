@@ -3,7 +3,7 @@
  */
 package com.openclassrooms.PayMyBuddy.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -16,6 +16,6 @@ public class TransactionID {
 
 	private String senderEmail;
 	private String recipientEmail;
-	private LocalDate transferTime;
+	private LocalDateTime transferTime;
 
 }

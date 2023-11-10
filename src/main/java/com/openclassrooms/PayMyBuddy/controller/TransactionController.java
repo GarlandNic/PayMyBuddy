@@ -1,6 +1,6 @@
 package com.openclassrooms.PayMyBuddy.controller;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,13 +41,16 @@ public class TransactionController {
 	
 	@PostMapping("/transfer")
 	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, Transaction transaction) {
-		transaction.setSenderEmail(userDetails.getUsername());
-		transaction.setDescription(null);
-		transaction.setTransferTime(LocalDate.now());
-		transaction.setFee(transactionServ.computeFee(transaction.getSendValue()));
-		
-		transactionServ.save(transaction);
-		
+		if(transaction.getSendValue()==0) {
+			// message ?
+		} else {
+			transaction.setSendValue(100*transaction.getSendValue()); // convert euros in cents
+			transaction.setSenderEmail(userDetails.getUsername());
+			transaction.setTransferTime(LocalDateTime.now());
+			transaction.setFee(transactionServ.computeFee(transaction.getSendValue()));
+			transactionServ.operation(transaction);
+			// message de bien passe ?
+		}
 		return "redirect:/transfer";
 	}
 

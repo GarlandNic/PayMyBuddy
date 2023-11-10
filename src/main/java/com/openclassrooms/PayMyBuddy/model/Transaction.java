@@ -3,8 +3,7 @@
  */
 package com.openclassrooms.PayMyBuddy.model;
 
-import java.rmi.UnexpectedException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +34,7 @@ public class Transaction {
 	private String recipientEmail;
 	
 	@Id
-	private LocalDate transferTime;
+	private LocalDateTime transferTime;
 	
 	// value in cents
 	@Column(name="value")
@@ -49,15 +48,6 @@ public class Transaction {
 	private String description;
 	
 //	private static final Long MAX_INT = 4294967295L;
-	
-	public void setSendValue(int val) throws UnexpectedException {
-		if(val<0) {
-			logger.error("negative value");
-			throw new UnexpectedException("negative value");
-		} else {
-			this.sendValue = val;
-		}
-	}
 	
 	public int getReceivedValue() {
 		return (this.sendValue - this.fee);
