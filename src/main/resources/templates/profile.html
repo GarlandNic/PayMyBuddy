@@ -11,9 +11,9 @@
 			Email : <input type="text" th:value="${user.email}" disabled/>
 		</p>
 		<p>
-			Password : <input type="text" th:value="**********" disabled/>
+			Password : <input type="text" value="**********" disabled/>
 			<form th:action="@{/profile/modifUser}" method="get">
-            		<button type="submit" value="password">Change password</button>/>
+            		<button type="submit">Change password</button>
         	</form>
 		</p>
 		<p>
@@ -37,9 +37,12 @@
 				</thead>
 				<tbody>
 					<tr th:each="buddy : ${buddyList}">
-						<td> <span th:text="${buddy.friendEmail}">email</span> </td>
-						<td> <span th:text="${buddy.nickname}">nickname</span> </td>
-						<td> bouton modifier / bouton supprimer </td>
+						<form th:action="@{/profile/friend}" th:object="${buddy}" method="post">
+						<td> <input type="text" th:text="*{friendEmail}" disabled/> </td>
+						<td> <input type="text" th:field="*{nickname}"/> </td>
+						<td> <button type="submit" name="modify" th:value="*{friendEmail}">Modify</button>
+							 <button type="submit" name="remove" th:value="*{friendEmail}">Remove</button> </td>
+						</form>
 					</tr>
 				</tbody>
 			</table>

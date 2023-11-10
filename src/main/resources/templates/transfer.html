@@ -24,13 +24,12 @@
 				
 				<input type="number" th:field="*{sendValue}" min="1" th:max="${user.balance/100}" value="0" style="padding-right:20px; text-align:right;" required/>
 				<span style="margin-left:-20px;">€</span>
-				
+        		<button type="submit">Pay</button> 
+        						
 				<p>
-				<textarea th:field="*{description}" placeholder="Write a description here" rows="1"></textarea>
+				<textarea th:field="*{description}" placeholder="Write a description here" rows="1" cols="30"></textarea>
             	</p>
             	
-        		<button type="submit">Pay</button> 
-        		
 			</fieldset>
 		</form>
 		

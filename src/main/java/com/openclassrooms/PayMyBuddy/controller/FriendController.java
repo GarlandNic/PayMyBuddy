@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.service.FriendService;
@@ -35,6 +36,20 @@ public class FriendController {
 		buddy.setUserEmail(userDetails.getUsername());
         friendServ.save(buddy);
 		return "redirect:/transfer";
+	}
+	
+    @PostMapping(value = "/profile/friend", params = "modify")
+	public String modifFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy, @RequestParam(required = true) String modify) {
+		buddy.setUserEmail(userDetails.getUsername());
+        friendServ.save(buddy);
+		return "redirect:/profile";
+	}
+
+    @PostMapping(value = "/profile/friend", params = "remove")
+	public String supprFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy, @RequestParam(required = true) String remove) {
+		buddy.setUserEmail(userDetails.getUsername());
+        friendServ.deleteFriend(buddy);
+		return "redirect:/profile";
 	}
 
 }

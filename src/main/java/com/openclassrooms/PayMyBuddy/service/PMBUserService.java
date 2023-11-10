@@ -23,7 +23,6 @@ public class PMBUserService {
 	private PasswordEncoder passwordEncoder; 
 	
 	public PMBUser createNewUser(PMBUser user) {
-		
 		Optional<PMBUser> existingUser = userRepo.findByEmail(user.getEmail());
 		
 		if(existingUser.isPresent()) {
@@ -41,6 +40,11 @@ public class PMBUserService {
 	
 	public void filledWithUser(Model model, UserDetails userDetails) {
 		model.addAttribute("user", this.getPMBUser(userDetails));
+	}
+
+	public PMBUser changeUser(PMBUser user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		return userRepo.save(user) ;
 	}
 
 }

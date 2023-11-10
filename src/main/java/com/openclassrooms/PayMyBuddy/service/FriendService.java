@@ -26,4 +26,8 @@ public class FriendService {
 		model.addAttribute("buddyList", this.getFriendList(userDetails.getUsername()));		
 	}
 
+	public void deleteFriend(Friend buddy) {
+		friendRepo.delete(buddy);
+	}
+
 }

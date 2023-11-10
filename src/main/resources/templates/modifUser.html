@@ -7,33 +7,23 @@
 	<body>
 		<div th:replace="fragments :: header(here='Profile')">Static header</div>
 		
-		pour modifier le mot de passe (on verra plus tard)
-<!-- copié de newUser
-<form action="#" th:action="@{/newUser}" th:object="${pmbuser}" method="post">
-	<h1> Create new account </h1>
-        	<div th:if="${exist}">
-            	<h3> This account already exist ! </h3>
-        	</div>
-	<fieldset>
-		<p>
+		<h3> Change your password </h3>
+
+		<form action="#" th:action="@{/profile/modifUser}" th:object="${pmbuser}" method="post">
+			<fieldset>
         	<label>
-      		Adresse mail :
-            <input type="email" th:field="*{email}" required />
+      		E-mail address:
+            <input type="email" th:field="*{email}" disabled />
             </label>
-        </p>
-        <p>
            	<label>
-           	Mot de passe :
+           	New password:
             <input type="password" th:field="*{password}" required />
             </label>
-        </p>
 
-        <p> 
-        	<button type="submit">Create</button> 
-        </p>
-	</fieldset>
-</form>
--->
+        	<button type="submit">Change</button> 
+			</fieldset>
+		</form>
+
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>
 </html>

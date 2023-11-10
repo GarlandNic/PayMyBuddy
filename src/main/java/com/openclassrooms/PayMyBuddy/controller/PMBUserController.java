@@ -52,6 +52,7 @@ public class PMBUserController {
 
 		return "redirect:/login";
 	}
+
 	
 	@GetMapping("/home")
 	public String welcome(Model model, @AuthenticationPrincipal UserDetails userDetails) {
@@ -65,14 +66,18 @@ public class PMBUserController {
 		friendServ.filledWithFriends(model, userDetails);
 		return "profile";
 	}
-
 	
 	@GetMapping("/profile/modifUser")
 	public String modifUser(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
 		return "modifUser";
 	}
-	// Post TODO
+	
+	@PostMapping("/profile/modifUser")
+	public String changeUser(Model model, @ModelAttribute("pmbuser") PMBUser user) {
+		userServ.changeUser(user);
+		return "redirect:/login";
+	}
 	
 	@GetMapping("/contact")
 	public String contact(Model model, @AuthenticationPrincipal UserDetails userDetails) {
