@@ -58,6 +58,13 @@ public class BankController {
 	}
 
 	@PostMapping(value = "/profile/debit", params="everything")
+	public String confirmEverything(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
+		PMBUser user = userServ.getPMBUser(userDetails);
+		creditDto.setValue(user.getBalance());
+		return "debit";
+	}
+	
+	@PostMapping(value = "/profile/debit", params="everythingSure")
 	public String debitationTotal(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
 		PMBUser user = userServ.getPMBUser(userDetails);
 		creditDto.setValue(user.getBalance());

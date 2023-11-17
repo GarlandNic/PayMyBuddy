@@ -24,3 +24,9 @@ o mise en page, CSS
 o tests
 
 
+
+Ce qu'il me reste à présent c'est des messages d'information à afficher quand des opérations se passent bien ou mal.
+Je pourrais également améliorer l'affichage des transactions avec les surnoms plutôt que les adresses mails mais il faut que je revois comment faire des requêtes avec jointure avec spring.
+Il y a aussi l'histoire de la pagination des transaction que j'ai laissé tomber.
+Bien sûr j'ai aussi toute la partie mise en page et CSS à faire.
+Pour l'instant le mot de passe pour accéder à la base de donnée est encore en clair dans le application.priperties, il faut que je change ça aussi.

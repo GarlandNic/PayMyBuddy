@@ -7,6 +7,7 @@
 	<body>
 		<div th:replace="fragments :: header(here='Profile')">Static header</div>
 	
+		<h3>Identity: </h3>
 		<p>
 			Email : <input type="text" th:value="${user.email}" disabled/>
 		</p>
@@ -16,17 +17,23 @@
             		<button type="submit">Change password</button>
         	</form>
 		</p>
+
+		<h3>Balance: </h3>
 		<p>
 			You currently have <span th:text="${#numbers.formatDecimal(user.balance/100.00, 1, 'COMMA', 2, 'POINT')}">***.**</span>€ on your account.
-		</p>    
+		</p>
+		<p>
+        	<form action="#" th:action="@{/home/credit}" method="get">
+				<button type="submit">Credit your account</button> 
+			</form>
+		</p>
         <p>
         	<form action="#" th:action="@{/profile/debit}" method="get">
 				<button type="submit">Send to your bank account</button> 
 			</form>
 		</p>
-		<p>
-			<h3>List of friends: </h3>
-			
+		<h3>List of friends: </h3>
+		<p>			
 			<table>
 				<thead>
 					<tr>

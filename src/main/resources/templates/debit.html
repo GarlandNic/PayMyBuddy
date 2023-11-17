@@ -30,10 +30,10 @@
 			</fieldset>
 			
 			<p>
-				<button type="submit" name="everything" formmethod="get">Send everything and remove my profile</button>
+				<button type="submit" name="everything" formmethod="post">Send everything and remove my profile</button>
 			</p>
 			<p th:if="${param.everything}">
-				Are you sure ? <button type="submit" formmethod="post" name="everything">Yes I am.</button>
+				Are you sure ? <button type="submit" formmethod="post" name="everythingSure">Yes I am.</button>
 			</p>
 			
 		</form>
