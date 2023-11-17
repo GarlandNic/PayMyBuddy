@@ -3,6 +3,7 @@ package com.openclassrooms.PayMyBuddy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
@@ -42,17 +43,18 @@ public class TransactionService {
 		return (int) Math.ceil(sendValue*TAXE);
 	}
 
+	@Transactional
 	public void operation(Transaction transaction) {
 		// commits/rollback ??
 		// on enlève les sous au sender
 		// on enregistre la transaction
 		// on ajoute les sous au receiver
-		PMBUser sender = userRepo.findById(transaction.getSenderEmail()).get();
-		sender.decreaseAccount(transaction.getSendValue());
+		PMBUser sender = transaction.getFriendship().getUser();
+		sender.decreaseAccount(transaction.getSentValueInCent());
 		userRepo.save(sender);
 		transactionRepo.save(transaction);
-		PMBUser recipient = userRepo.findById(transaction.getRecipientEmail()).get();
-		recipient.increaseAccount(transaction.getReceivedValue());
+		PMBUser recipient = transaction.getFriendship().getBuddy();
+		recipient.increaseAccount(transaction.getReceivedValueInCent());
 		userRepo.save(recipient);
 	}
 

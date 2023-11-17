@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.openclassrooms.PayMyBuddy.model.Friend;
+import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
 
@@ -25,8 +26,10 @@ public class FriendController {
 	
 	@GetMapping("/transfer/addFriend")
 	public String addFriendForm(Model model, @AuthenticationPrincipal UserDetails userDetails) {
-        Friend buddy = new Friend();
-        buddy.setUserEmail(userDetails.getUsername());
+		PMBUser user = userServ.getPMBUser(userDetails);
+		Friend buddy = new Friend();
+        buddy.setUserId(user.getUsersId());
+        model.addAttribute("user", user);
         model.addAttribute("buddy", buddy);
 		userServ.filledWithUser(model, userDetails);
 		return "addFriend";
@@ -34,12 +37,12 @@ public class FriendController {
 	
 	@PostMapping("/transfer/addFriend")
 	public String addFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy) {
-		buddy.setUserEmail(userDetails.getUsername());
+		buddy.setUserId(userServ.getPMBUser(userDetails).getUsersId());
         boolean isOk = friendServ.save(buddy);
         if(isOk) {
     		return "redirect:/transfer";
         } else {
-        	// message
+        	// add message ?
     		return "redirect:/transfer/addFriend";
         }
 	}
@@ -47,16 +50,16 @@ public class FriendController {
     @PostMapping(value = "/profile/friend", params = "modify")
 	public String modifFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
 			@ModelAttribute("buddy") Friend buddy, @RequestParam(required = true) String modify) {
-		buddy.setUserEmail(userDetails.getUsername());
-        friendServ.save(buddy);
+		buddy.setUserId(userServ.getPMBUser(userDetails).getUsersId());
+		friendServ.save(buddy);
 		return "redirect:/profile";
 	}
 
     @PostMapping(value = "/profile/friend", params = "remove")
 	public String supprFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
 			@ModelAttribute("buddy") Friend buddy, @RequestParam(required = true) String remove) {
-		buddy.setUserEmail(userDetails.getUsername());
-        friendServ.deleteFriend(buddy);
+		buddy.setUserId(userServ.getPMBUser(userDetails).getUsersId());
+		friendServ.deleteFriend(buddy);
 		return "redirect:/profile";
 	}
 

@@ -38,8 +38,10 @@ public class PMBUserService {
 		return user.get();	
 	}
 	
-	public void filledWithUser(Model model, UserDetails userDetails) {
-		model.addAttribute("user", this.getPMBUser(userDetails));
+	public PMBUser filledWithUser(Model model, UserDetails userDetails) {
+		PMBUser user = this.getPMBUser(userDetails);
+		model.addAttribute("user", user);
+		return user;
 	}
 
 	public PMBUser changeUser(PMBUser user) {

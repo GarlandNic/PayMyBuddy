@@ -41,13 +41,13 @@ public class TransactionController {
 	
 	@PostMapping("/transfer")
 	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, Transaction transaction) {
-		if(transaction.getSendValue()==0) {
+		if(transaction.getSentValueInCent()==0) {
 			// message ?
 		} else {
-			transaction.setSendValue(100*transaction.getSendValue()); // convert euros in cents
-			transaction.setSenderEmail(userDetails.getUsername());
+			transaction.setSentValueInCent(100*transaction.getSentValueInCent()); // convert euros in cents
+			transaction.setFriendshipId(0);
 			transaction.setTransferTime(LocalDateTime.now());
-			transaction.setFee(transactionServ.computeFee(transaction.getSendValue()));
+			transaction.setTaxedFeeInCent(transactionServ.computeFee(transaction.getSentValueInCent()));
 			transactionServ.operation(transaction);
 			// message de bien passe ?
 		}
