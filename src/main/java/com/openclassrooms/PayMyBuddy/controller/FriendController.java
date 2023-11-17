@@ -24,6 +24,9 @@ public class FriendController {
 	@Autowired
 	private PMBUserService userServ;
 	
+	/**
+	 * Display the form to add a new friend
+	 */
 	@GetMapping("/transfer/addFriend")
 	public String addFriendForm(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		PMBUser user = userServ.getPMBUser(userDetails);
@@ -35,6 +38,12 @@ public class FriendController {
 		return "addFriend";
 	}
 	
+	/**
+	 * @param model
+	 * @param userDetails
+	 * @param buddy
+	 * @return
+	 */
 	@PostMapping("/transfer/addFriend")
 	public String addFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, Friend buddy) {
 		buddy.setUserId(userServ.getPMBUser(userDetails).getUsersId());

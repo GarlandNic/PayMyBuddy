@@ -45,7 +45,7 @@ public class TransactionController {
 			// message ?
 		} else {
 			transaction.setSentValueInCent(100*transaction.getSentValueInCent()); // convert euros in cents
-			transaction.setFriendshipId(0);
+			transaction.setFriendshipId(0);///////////////////////////
 			transaction.setTransferTime(LocalDateTime.now());
 			transaction.setTaxedFeeInCent(transactionServ.computeFee(transaction.getSentValueInCent()));
 			transactionServ.operation(transaction);

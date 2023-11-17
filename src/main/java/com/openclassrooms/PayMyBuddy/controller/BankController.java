@@ -92,7 +92,7 @@ public class BankController {
 		PMBUser user = userServ.getPMBUser(userDetails);
 		creditDto.setValue(user.getBalanceInCent());
 		bankServ.debitation(creditDto, user);
-//		userServ.supprUser(user);
+		userServ.supprUser(user);
 		return "redirect:/login?logout";
 	}
 
