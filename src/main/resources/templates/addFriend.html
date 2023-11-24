@@ -7,16 +7,19 @@
 	<body>
     	<div th:replace="fragments :: header(here='Transfer')">Static header</div>
     	
-        <form th:action="@{/transfer/addFriend}" method="post">
+        <form th:action="@{/transfer/addFriend}" th:object="${friend}" method="post">
 	        <h3> Who's your buddy ? </h3>
         
-    		<div th:if="${error}">
+ 		   	<div th:if="${param.unknownFriend}">
+        		<h3> Sorry, your friend is not in our database. Tell him/her to create an account. </h3>
+        	</div>
+    		<div th:if="${param.error}">
         		<h3> A problem occurs ! </h3>
         	</div>
         	
         	<fieldset>
 				<label>
-					Email address: <input type="email" th:name="${friendEmail}" placeholder="Email"/>
+					Email address: <input type="email" th:field="*{friendEmail}" placeholder="Email"/>
 				</label>
             	
         		<button type="submit">Save</button>

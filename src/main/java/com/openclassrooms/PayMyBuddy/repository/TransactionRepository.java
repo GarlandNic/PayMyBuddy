@@ -6,8 +6,8 @@ import com.openclassrooms.PayMyBuddy.model.Transaction;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
 
-	Iterable<Transaction> findByRecipientEmail(String username);
+	Iterable<Transaction> findByFriendshipBuddyEmail(String username);
 
-	Iterable<Transaction> findBySenderEmail(String username);
+	Iterable<Transaction> findByFriendshipUserEmail(String username);
 
 }

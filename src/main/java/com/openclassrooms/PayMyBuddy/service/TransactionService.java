@@ -1,11 +1,15 @@
 package com.openclassrooms.PayMyBuddy.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import com.openclassrooms.PayMyBuddy.dto.TransactionDto;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.model.Transaction;
 import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
@@ -23,20 +27,28 @@ public class TransactionService {
 	private PMBUserRepository userRepo;
 
 	private Iterable<Transaction> getTransferIncomes(String username) {
-		return transactionRepo.findByRecipientEmail(username);
+		return transactionRepo.findByFriendshipBuddyEmail(username);
 	}
 
 	private Iterable<Transaction> getTransferOutcomes(String username) {
-		return transactionRepo.findBySenderEmail(username);
+		return transactionRepo.findByFriendshipUserEmail(username);
 	}
 
 
 	public void filledWithIncomes(Model model, UserDetails userDetails) {
-		model.addAttribute("incomesList", this.getTransferIncomes(userDetails.getUsername()));
+		List<TransactionDto> incomesList = new ArrayList<>();
+		this.getTransferIncomes(userDetails.getUsername()).forEach(trans -> {
+			incomesList.add(new TransactionDto(trans));
+		});
+		model.addAttribute("incomesList", incomesList);
 	}
 
 	public void filledWithOutcomes(Model model, UserDetails userDetails) {
-		model.addAttribute("outcomesList", this.getTransferOutcomes(userDetails.getUsername()));
+		List<TransactionDto> outcomesList = new ArrayList<>();
+		this.getTransferOutcomes(userDetails.getUsername()).forEach(trans -> {
+			outcomesList.add(new TransactionDto(trans));
+		});
+		model.addAttribute("outcomesList", outcomesList);
 	}
 
 	public int computeFee(int sendValue) {

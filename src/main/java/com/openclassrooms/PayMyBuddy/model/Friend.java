@@ -25,12 +25,12 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name = "friends")
+@Table(name = "friend")
 public class Friend {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int friendsId;
+	private int friendId;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -43,6 +43,6 @@ public class Friend {
 	@OneToMany(cascade = CascadeType.ALL,
 			   fetch = FetchType.LAZY, 
 			   mappedBy = "friendship")
-	private List<Transaction> transactionsList = new ArrayList<>();
+	private List<Transaction> transactionList = new ArrayList<>();
 	
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,12 +23,12 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name = "users")
+@Table(name = "PMBuser")
 public class PMBUser {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int usersId;
+	private int userId;
 	
 	private String email;
 	
@@ -50,11 +51,11 @@ public class PMBUser {
 			   orphanRemoval = true, 
 			   fetch = FetchType.LAZY, 
 			   mappedBy = "user")
-	private List<Friend> friendsList = new ArrayList<>();
+	private List<Friend> friendList = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.ALL, 
 			   fetch = FetchType.LAZY, 
 			   mappedBy = "buddy")
-	private List<Friend> reverveFriendshipList = new ArrayList<>();
+	private List<Friend> reverseFriendshipList = new ArrayList<>();
 
 }

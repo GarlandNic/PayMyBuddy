@@ -17,12 +17,12 @@
 		
 		<form action="#" th:action="@{/transfer}" th:object="${transaction}" method="post">
 			<fieldset>
-				<select id="dropDownList" th:field="*{friendshipId}" required>
+				<select id="dropDownList" th:field="*{friendship}" required>
     				<option value="0" disabled>Select A Connection</option>
-    				<option th:each="friend : ${friendsList}" th:value="${friendsId}" th:text="${friend.buddy.nickname}"></option>
+    				<option th:each="friend : ${user.friendList}" th:value="${friend}" th:text="${friend.buddy.nickname}"></option>
 				</select>
 				
-				<input type="number" th:field="*{sentValueInCent}" min="1" th:max="${user.balance/100}" value="0" style="padding-right:20px; text-align:right;" required/>
+				<input type="number" th:field="*{sentValueInCent}" min="1" th:max="${user.balanceInCent/100}" value="0" style="padding-right:20px; text-align:right;" required/>
 				<span style="margin-left:-20px;">€</span>
         		<button type="submit">Pay</button> 
         						

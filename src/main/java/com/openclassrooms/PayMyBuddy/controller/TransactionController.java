@@ -32,7 +32,7 @@ public class TransactionController {
 	@GetMapping("/transfer")
 	public String transfer(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
-		friendServ.filledWithFriends(model, userDetails);
+//		friendServ.filledWithFriends(model, userDetails);
 		transactionServ.filledWithIncomes(model, userDetails);
 		transactionServ.filledWithOutcomes(model, userDetails);
 		model.addAttribute("transaction", new Transaction());
@@ -46,7 +46,6 @@ public class TransactionController {
 			return "redirect:/transfer?error";
 		} else {
 			transaction.setSentValueInCent(100*transaction.getSentValueInCent()); // convert euros in cents
-			transaction.setFriendshipId(0);///////////////////////////
 			transaction.setTransferTime(LocalDateTime.now());
 			transaction.setTaxedFeeInCent(transactionServ.computeFee(transaction.getSentValueInCent()));
 			transactionServ.operation(transaction);

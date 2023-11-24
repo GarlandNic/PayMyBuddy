@@ -42,7 +42,7 @@ public class PMBUserService {
 	
 	public PMBUser getPMBUserByEmail(String email) {
 		Optional<PMBUser> user = userRepo.findByEmail(email);
-		return user.get();	
+		return (user.isPresent() ? user.get() : null);	
 	}
 	
 	public PMBUser filledWithUser(Model model, UserDetails userDetails) {

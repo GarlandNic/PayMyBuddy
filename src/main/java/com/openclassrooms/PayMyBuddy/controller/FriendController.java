@@ -36,6 +36,7 @@ public class FriendController {
 //        model.addAttribute("user", user);
 //        model.addAttribute("buddy", buddy);
 		userServ.filledWithUser(model, userDetails);
+		model.addAttribute("friend", new FriendDto());
 		return "addFriend";
 	}
 	
@@ -46,10 +47,12 @@ public class FriendController {
 	 * @return
 	 */
 	@PostMapping("/transfer/addFriend")
-	public String addFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("friendEmail") String friendEmail) {
+	public String addFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("friend") FriendDto friendDto) {
 		Friend friend = new Friend();
 		friend.setUser(userServ.getPMBUser(userDetails));
-		friend.setBuddy(userServ.getPMBUserByEmail(friendEmail));
+		PMBUser buddy = userServ.getPMBUserByEmail(friendDto.getFriendEmail());
+		if(null==buddy) return "redirect:/transfer/addFriend?unknownFriend";
+		friend.setBuddy(buddy);
         boolean isOk = friendServ.save(friend);
         if(isOk) {
     		return "redirect:/transfer";

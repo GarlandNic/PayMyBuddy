@@ -12,15 +12,18 @@
 			Email : <input type="text" th:value="${user.email}" disabled/>
 		</p>
 		<p>
+			Username : <input type="text" th:value="${user.nickname}" disabled/>
+		</p>
+		<p>
 			Password : <input type="text" value="**********" disabled/>
 			<form th:action="@{/profile/modifUser}" method="get">
-            		<button type="submit">Change password</button>
+            		<button type="submit">Change username or password</button>
         	</form>
 		</p>
 
 		<h3>Balance: </h3>
 		<p>
-			You currently have <span th:text="${#numbers.formatDecimal(user.balance/100.00, 1, 'COMMA', 2, 'POINT')}">***.**</span>€ on your account.
+			You currently have <span th:text="${#numbers.formatDecimal(user.balanceInCent/100.00, 1, 'COMMA', 2, 'POINT')}">***.**</span>€ on your account.
 		</p>
 		<p>
         	<form action="#" th:action="@{/home/credit}" method="get">
@@ -43,7 +46,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="friend : ${user.friendsList}">
+					<tr th:each="friend : ${user.friendList}">
 						<form th:action="@{/profile/friend}" th:object="${friend}" method="post">
 						<td> <input type="text" th:value="${friend.buddy.email}" readonly/> </td>
 						<td> <input type="text" th:value="${friend.buddy.nickname}" name="nickname" readonly/> </td>
