@@ -13,14 +13,13 @@
 			<span style="float:left">
         		logo
     		</span>
-			Connected as <span th:text="${user.email} ?: 'nobody'">
-    		</span>
+			Connected as <span th:remove="tag" th:text="${user.nickname}">nobody</span>
 		    <span style="float:right; display:flex">
 				<form th:action="@{/home}" method="get">
             		<input type="submit" value="Home" th:unless="${here == 'Home'}"/>
             		<span th:if="${here == 'Home'}">Home</span>
         		</form>
-				<form th:action="@{/transfer}" method="get">
+				<form th:action="@{/transfer?inout=received}" method="get">
             		<input type="submit" value="Transfer" th:unless="${here == 'Transfer'}"/>
             		<span th:if="${here == 'Transfer'}">Transfer</span>
         		</form>

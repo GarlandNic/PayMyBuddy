@@ -7,7 +7,7 @@
 	<body>
     	<div th:replace="fragments :: header(here='Transfer')">Static header</div>
     	
-        <form th:action="@{/transfer/addFriend}" th:object="${buddy}" method="post">
+        <form th:action="@{/transfer/addFriend}" method="post">
 	        <h3> Who's your buddy ? </h3>
         
     		<div th:if="${error}">
@@ -16,10 +16,7 @@
         	
         	<fieldset>
 				<label>
-					Email address: <input type="email" th:field="*{friendEmail}" placeholder="Email"/>
-				</label>
-				<label>
-					Nickname: <input type="text" th:field="*{nickname}" placeholder="Nickname"/>
+					Email address: <input type="email" th:name="${friendEmail}" placeholder="Email"/>
 				</label>
             	
         		<button type="submit">Save</button>

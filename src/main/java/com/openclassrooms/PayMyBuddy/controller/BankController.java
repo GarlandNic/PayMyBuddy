@@ -34,7 +34,7 @@ public class BankController {
 	 */
 	@GetMapping("/home/credit")
 	public String credit(Model model, @AuthenticationPrincipal UserDetails userDetails) {
-		userServ.filledWithUser(model, userDetails);
+//		userServ.filledWithUser(model, userDetails);
 		model.addAttribute("creditdto", new CreditDto());
 		return "credit";
 	}

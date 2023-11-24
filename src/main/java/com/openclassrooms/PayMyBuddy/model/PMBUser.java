@@ -31,7 +31,7 @@ public class PMBUser {
 	
 	private String email;
 	
-	private String nickname;
+	private String nickname = email;
 	
 	private String password;
 	
@@ -40,13 +40,21 @@ public class PMBUser {
 	// java int : -2,147,483,648 à 2,147,483,647
 	
 	public void increaseAccount(int money) {
-		if(money>0) this.balanceInCent = this.balanceInCent + money;
+		if(money>0) this.balanceInCent += money;
 	}
 	public void decreaseAccount(int money) {
-		if(money>0) this.balanceInCent = this.balanceInCent - money;
+		if(money>0) this.balanceInCent -= money;
 	}
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(cascade = CascadeType.ALL, 
+			   orphanRemoval = true, 
+			   fetch = FetchType.LAZY, 
+			   mappedBy = "user")
 	private List<Friend> friendsList = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, 
+			   fetch = FetchType.LAZY, 
+			   mappedBy = "buddy")
+	private List<Friend> reverveFriendshipList = new ArrayList<>();
 
 }

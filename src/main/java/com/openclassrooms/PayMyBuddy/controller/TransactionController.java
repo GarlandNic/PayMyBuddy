@@ -42,7 +42,8 @@ public class TransactionController {
 	@PostMapping("/transfer")
 	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, Transaction transaction) {
 		if(transaction.getSentValueInCent()==0) {
-			// message ?
+			// souldn't occurs (min = 1€)
+			return "redirect:/transfer?error";
 		} else {
 			transaction.setSentValueInCent(100*transaction.getSentValueInCent()); // convert euros in cents
 			transaction.setFriendshipId(0);///////////////////////////
@@ -50,8 +51,8 @@ public class TransactionController {
 			transaction.setTaxedFeeInCent(transactionServ.computeFee(transaction.getSentValueInCent()));
 			transactionServ.operation(transaction);
 			// message de bien passe ?
+			return "redirect:/transfer?ok";
 		}
-		return "redirect:/transfer";
 	}
 
 }

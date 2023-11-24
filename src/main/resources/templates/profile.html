@@ -38,17 +38,17 @@
 				<thead>
 					<tr>
 						<th>Email</th>
-						<th>Nickname</th>
+						<th>Username</th>
 						<th> </th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="buddy : ${buddyList}">
-						<form th:action="@{/profile/friend}" th:object="${buddy}" method="post">
-						<td> <input type="text" th:value="*{friendEmail}" name="friendEmail" readonly/> </td>
-						<td> <input type="text" th:value="*{nickname}" name="nickname"/> </td>
-						<td> <button type="submit" name="modify" th:value="*{friendEmail}">Modify</button>
-							 <button type="submit" name="remove" th:value="*{friendEmail}">Remove</button> </td>
+					<tr th:each="friend : ${user.friendsList}">
+						<form th:action="@{/profile/friend}" th:object="${friend}" method="post">
+						<td> <input type="text" th:value="${friend.buddy.email}" readonly/> </td>
+						<td> <input type="text" th:value="${friend.buddy.nickname}" name="nickname" readonly/> </td>
+						<td> <input type="hidden" th:field="*{user}"/> <input type="hidden" th:field="*{buddy}"/>
+							<button type="submit" name="remove" th:value="${friend.buddy.email}">Remove</button> </td>
 						</form>
 					</tr>
 				</tbody>

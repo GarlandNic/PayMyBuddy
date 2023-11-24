@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.openclassrooms.PayMyBuddy.dto.CreditDto;
+import com.openclassrooms.PayMyBuddy.dto.FriendDto;
+import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 import com.openclassrooms.PayMyBuddy.security.CustomUserDetailsService;
@@ -38,6 +40,11 @@ public class PMBUserService {
 		return user.get();	
 	}
 	
+	public PMBUser getPMBUserByEmail(String email) {
+		Optional<PMBUser> user = userRepo.findByEmail(email);
+		return user.get();	
+	}
+	
 	public PMBUser filledWithUser(Model model, UserDetails userDetails) {
 		PMBUser user = this.getPMBUser(userDetails);
 		model.addAttribute("user", user);
@@ -51,6 +58,13 @@ public class PMBUserService {
 
 	public void supprUser(PMBUser user) {
 		userRepo.delete(user);		
+	}
+
+	public Friend FriendDtoToFriend(FriendDto buddy, PMBUser pmbUser) {
+		Friend friend = new Friend();
+		friend.setUser(pmbUser);
+		friend.setBuddy(userRepo.findByEmail(buddy.getFriendEmail()).get());
+		return friend;
 	}
 
 }

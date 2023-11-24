@@ -33,7 +33,7 @@ o securisation de l'acces à la base de donnée (mot de passe administrateur pas
 		"
 o mise en page, CSS
 o tests
-
+o dto pour passer les donnees
 
 
 Ce qu'il me reste à présent c'est des messages d'information à afficher quand des opérations se passent bien ou mal.
@@ -48,3 +48,9 @@ o commentaires dans le code
 o script sql pour insérer des données -> générer à partir de workbench
 o présentation du code 
 o diagramme UML
+
+
+Du coup j'ai modifié la structure de mes tables pour avoir des identifiants qui s'auto-incrémentent. ça m'a fait faire plein de modifs dans le code.
+J'ai encore des erreurs à corriger par rapport à ça. En plus j'ai modifié le nom de certains attributs pour que ce soit plus explicite. Il faut que je remette à jour tous mes html.
+J'ai pas encore pu tout tester donc j'aurais sans doute encore d'autres corrections à faire.
+

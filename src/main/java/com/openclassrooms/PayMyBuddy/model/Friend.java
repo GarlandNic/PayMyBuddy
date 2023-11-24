@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -31,19 +32,17 @@ public class Friend {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int friendsId;
 	
-	private int userId;
-	
-	private int buddyId;
-	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private PMBUser user;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "buddy_id")
 	private PMBUser buddy;
 	
-	@OneToMany(mappedBy = "friendship")
+	@OneToMany(cascade = CascadeType.ALL,
+			   fetch = FetchType.LAZY, 
+			   mappedBy = "friendship")
 	private List<Transaction> transactionsList = new ArrayList<>();
 	
 }
