@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.openclassrooms.PayMyBuddy.dto.CreditDto;
 import com.openclassrooms.PayMyBuddy.dto.PayBuddyDto;
+import com.openclassrooms.PayMyBuddy.dto.TransactionDto;
 import com.openclassrooms.PayMyBuddy.model.Transaction;
 import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
@@ -32,23 +33,24 @@ public class TransactionController {
 	@GetMapping("/transfer")
 	public String transfer(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
-//		friendServ.filledWithFriends(model, userDetails);
+		friendServ.filledWithFriends(model, userDetails);
 		transactionServ.filledWithIncomes(model, userDetails);
 		transactionServ.filledWithOutcomes(model, userDetails);
-		model.addAttribute("transaction", new Transaction());
+		model.addAttribute("transaction", new TransactionDto());
 		return "transfer";
 	}
 	
 	@PostMapping("/transfer")
-	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, Transaction transaction) {
-		if(transaction.getSentValueInCent()==0) {
+	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, TransactionDto transaction) {
+		if(transaction.getSendValue()==0) {
 			// souldn't occurs (min = 1€)
 			return "redirect:/transfer?error";
 		} else {
-			transaction.setSentValueInCent(100*transaction.getSentValueInCent()); // convert euros in cents
+			transaction.setSenderEmail(userServ.getPMBUser(userDetails).getEmail());
+			transaction.setSendValue(100*transaction.getSendValue()); // convert euros in cents
 			transaction.setTransferTime(LocalDateTime.now());
-			transaction.setTaxedFeeInCent(transactionServ.computeFee(transaction.getSentValueInCent()));
-			transactionServ.operation(transaction);
+			transaction.setFee(transactionServ.computeFee(transaction.getSendValue()));
+			transactionServ.operation(transactionServ.transToDB(transaction));
 			// message de bien passe ?
 			return "redirect:/transfer?ok";
 		}

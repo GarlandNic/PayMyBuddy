@@ -72,7 +72,7 @@ public class FriendController {
 
     @PostMapping(value = "/profile/friend", params = "remove")
 	public String supprFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
-			@ModelAttribute("friend") Friend buddy, @RequestParam(required = true) String remove) {
+			@ModelAttribute("friendship") Friend buddy, @RequestParam(required = true) String remove) {
 		buddy.setUser(userServ.getPMBUser(userDetails));
 		friendServ.deleteFriend(buddy);
 		return "redirect:/profile";

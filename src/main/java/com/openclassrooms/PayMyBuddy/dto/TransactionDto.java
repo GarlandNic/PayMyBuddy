@@ -13,6 +13,10 @@ public class TransactionDto {
 	
 	String recipientEmail;
 	
+	String senderNickname;
+	
+	String recipientNickname;
+	
 	int sendValue;
 	
 	int fee;
@@ -23,13 +27,18 @@ public class TransactionDto {
 	
 	public TransactionDto(Transaction transaction) {
 		this.senderEmail = transaction.getFriendship().getUser().getEmail();
+		this.senderNickname = transaction.getFriendship().getUser().getNickname();
 		this.recipientEmail = transaction.getFriendship().getBuddy().getEmail();
+		this.recipientNickname = transaction.getFriendship().getBuddy().getNickname();
 		this.sendValue = transaction.getSentValueInCent();
 		this.fee = transaction.getTaxedFeeInCent();
 		this.transferTime = transaction.getTransferTime();
 		this.description = transaction.getDescription();
 	}
 	
+	public TransactionDto() {
+	}
+
 	public int getReceivedValueInCent() {
 		return (this.sendValue - this.fee);
 	}

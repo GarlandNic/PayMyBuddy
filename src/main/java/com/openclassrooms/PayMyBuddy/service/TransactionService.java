@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import com.openclassrooms.PayMyBuddy.dto.TransactionDto;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.model.Transaction;
+import com.openclassrooms.PayMyBuddy.repository.FriendRepository;
 import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 import com.openclassrooms.PayMyBuddy.repository.TransactionRepository;
 
@@ -25,6 +26,9 @@ public class TransactionService {
 	
 	@Autowired
 	private PMBUserRepository userRepo;
+
+	@Autowired
+	private FriendRepository friendRepo;
 
 	private Iterable<Transaction> getTransferIncomes(String username) {
 		return transactionRepo.findByFriendshipBuddyEmail(username);
@@ -68,6 +72,16 @@ public class TransactionService {
 		PMBUser recipient = transaction.getFriendship().getBuddy();
 		recipient.increaseAccount(transaction.getReceivedValueInCent());
 		userRepo.save(recipient);
+	}
+	
+	public Transaction transToDB(TransactionDto transDto) {
+		Transaction trans = new Transaction();
+		trans.setDescription(transDto.getDescription());
+		trans.setSentValueInCent(transDto.getSendValue());
+		trans.setTaxedFeeInCent(transDto.getFee());
+		trans.setTransferTime(transDto.getTransferTime());
+		trans.setFriendship(friendRepo.findByUserEmailAndBuddyEmail(transDto.getSenderEmail(), transDto.getRecipientEmail()).get());
+		return trans;
 	}
 
 }
