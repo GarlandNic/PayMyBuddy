@@ -6,9 +6,9 @@
     
     <body>
     	<div th:replace="fragments :: header(here='Home')">Static header</div>
-    	<!--
-        <h1>Welcome back <span th:remove="tag" sec:authentication="name">user</span> !</h1>
-		-->
+
+		<img th:src="@{/images/couverturePMB.png}" alt="Pay My Buddy">
+		
         <h1>Welcome back <span th:text="${user.nickname}">user</span> !</h1>
 
         <p>You currently have <span th:text="${#numbers.formatDecimal(user.balanceInCent/100.00, 1, 'COMMA', 2, 'POINT')}">***.**</span>€ on your account.</p>

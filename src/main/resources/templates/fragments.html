@@ -4,6 +4,7 @@
     	<div th:fragment="html_head">
     		<meta charset="UTF-8">
 			<title>Pay My Buddy</title>
+			<link rel="stylesheet" type="text/css" media="all" th:href="@{/NewStyle.css}" />
     	</div>
     </head>
     <body>
@@ -11,7 +12,7 @@
 		<div th:fragment="header (here)" style="text-align: center" >
 			<br/>
 			<span style="float:left">
-        		logo
+        		<img th:src="@{/images/logoPMB.png}" alt="logo">
     		</span>
 			Connected as <span th:remove="tag" th:text="${user.nickname}">nobody</span>
 		    <span style="float:right; display:flex">

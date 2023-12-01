@@ -39,7 +39,7 @@ public class TransactionDto {
 	public TransactionDto() {
 	}
 
-	public int getReceivedValueInCent() {
+	public int getReceivedValue() {
 		return (this.sendValue - this.fee);
 	}
 
