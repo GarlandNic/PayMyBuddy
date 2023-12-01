@@ -45,12 +45,9 @@ public class PMBUserController {
 	@PostMapping("/newUser")
 	public String createNewUser(Model model, @ModelAttribute("pmbuser") PMBUser user) {
 		PMBUser userCheck = userServ.createNewUser(user);
-
 		if( userCheck==null ) {
-//			model.addAttribute("exist", true);
 			return "redirect:/newUser?exist";
 		}
-
 		return "redirect:/login";
 	}
 
@@ -89,8 +86,8 @@ public class PMBUserController {
 	
 	@PostMapping("/contact")
 	public String message(Model model, @AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("message") String message) {
-		//
-		return "redirect:/contact";
+		userServ.contactMessage(message);
+		return "redirect:/contact?message";
 	}
 	
 

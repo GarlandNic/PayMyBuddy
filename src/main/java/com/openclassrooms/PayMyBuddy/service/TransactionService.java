@@ -31,11 +31,11 @@ public class TransactionService {
 	private FriendRepository friendRepo;
 
 	private Iterable<Transaction> getTransferIncomes(String username) {
-		return transactionRepo.findByFriendshipBuddyEmail(username);
+		return transactionRepo.findByFriendshipBuddyEmailOrderByTransferTimeDesc(username);
 	}
 
 	private Iterable<Transaction> getTransferOutcomes(String username) {
-		return transactionRepo.findByFriendshipUserEmail(username);
+		return transactionRepo.findByFriendshipUserEmailOrderByTransferTimeDesc(username);
 	}
 
 

@@ -67,4 +67,8 @@ public class PMBUserService {
 		return friend;
 	}
 
+	public void contactMessage(String message) {
+		// Send the message to the rigth people
+	}
+
 }

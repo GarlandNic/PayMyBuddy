@@ -57,7 +57,6 @@ public class FriendController {
         if(isOk) {
     		return "redirect:/transfer";
         } else {
-        	// add message ?
     		return "redirect:/transfer/addFriend?error";
         }
 	}

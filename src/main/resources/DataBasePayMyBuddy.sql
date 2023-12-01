@@ -9,7 +9,8 @@ create table PMBuser(
  EMAIL varchar(255) NOT NULL,
  NICKNAME varchar(255) NOT NULL,
  PASSWORD varchar(63) NOT NULL,
- BALANCE_IN_CENT integer NOT NULL DEFAULT 0
+ BALANCE_IN_CENT integer NOT NULL DEFAULT 0,
+ UNIQUE (EMAIL)
 );
 
 create table friend(

@@ -15,6 +15,11 @@
     		Github : https://github.com/GarlandNic/PayMyBuddy
     		<br/>
 		</p>
+		
+		<div th:if="${param.message}">
+        	<h3> Thank you for contacting us. </h3>
+        </div>
+		
 		<form th:action="@{/contact}" method="post">
 			<h3> Contact us !</h3>
 			<textarea type="text" th:name="${message}"></textarea>

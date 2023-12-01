@@ -44,7 +44,7 @@ public class TransactionController {
 	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, TransactionDto transaction) {
 		if(transaction.getSendValue()==0) {
 			// souldn't occurs (min = 1€)
-			return "redirect:/transfer?error";
+			return "redirect:/transfer?zeroError";
 		} else {
 			transaction.setSenderEmail(userServ.getPMBUser(userDetails).getEmail());
 			transaction.setSendValue(100*transaction.getSendValue()); // convert euros in cents
@@ -52,7 +52,7 @@ public class TransactionController {
 			transaction.setFee(transactionServ.computeFee(transaction.getSendValue()));
 			transactionServ.operation(transactionServ.transToDB(transaction));
 			// message de bien passe ?
-			return "redirect:/transfer?ok";
+			return "redirect:/transfer?ok&inout=sent";
 		}
 	}
 

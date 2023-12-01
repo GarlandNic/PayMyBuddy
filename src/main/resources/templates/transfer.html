@@ -7,6 +7,11 @@
 	<body>
 		<div th:replace="fragments :: header(here='Transfer')">Static header</div>
 		
+		<div th:if="${param.zeroError}">
+        	<h3> Minimum amount to send: 1€. </h3>
+        </div>
+		
+		
 		<form th:action="@{/transfer/addFriend}" method="get">
 			<h3> Send Money 
 				<span style="float:right; display:flex">
