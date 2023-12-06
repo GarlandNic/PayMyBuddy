@@ -27,20 +27,19 @@ public class FriendController {
 	
 	/**
 	 * Display the form to add a new friend
+	 * @param model
+	 * @param userDetails
+	 * @return
 	 */
 	@GetMapping("/transfer/addFriend")
 	public String addFriendForm(Model model, @AuthenticationPrincipal UserDetails userDetails) {
-//		PMBUser user = userServ.getPMBUser(userDetails);
-//		FriendDto buddy = new FriendDto();
-//        buddy.setUser(user);
-//        model.addAttribute("user", user);
-//        model.addAttribute("buddy", buddy);
 		userServ.filledWithUser(model, userDetails);
 		model.addAttribute("friend", new FriendDto());
 		return "addFriend";
 	}
 	
 	/**
+	 * Add a new friendship relation from the form
 	 * @param model
 	 * @param userDetails
 	 * @param buddy
@@ -60,15 +59,15 @@ public class FriendController {
     		return "redirect:/transfer/addFriend?error";
         }
 	}
-	
-//    @PostMapping(value = "/profile/friend", params = "modify")
-//	public String modifFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
-//			@ModelAttribute("buddy") Friend buddy, @RequestParam(required = true) String modify) {
-//		buddy.setUser(userServ.getPMBUser(userDetails));
-//		friendServ.save(buddy);
-//		return "redirect:/profile";
-//	}
 
+    /**
+     * remove a friendship relation
+     * @param model
+     * @param userDetails
+     * @param buddy
+     * @param remove
+     * @return
+     */
     @PostMapping(value = "/profile/friend", params = "remove")
 	public String supprFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
 			@ModelAttribute("friendship") Friend buddy, @RequestParam(required = true) String remove) {

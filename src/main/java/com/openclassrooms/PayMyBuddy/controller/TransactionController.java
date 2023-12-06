@@ -27,6 +27,12 @@ public class TransactionController {
 	@Autowired
 	private FriendService friendServ;
 	
+	/**
+	 * Diplay the "transfer" page
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
 	@GetMapping("/transfer")
 	public String transfer(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
@@ -37,6 +43,13 @@ public class TransactionController {
 		return "transfer";
 	}
 	
+	/**
+	 * get the transfer form and make the corresponding operation
+	 * @param model
+	 * @param userDetails
+	 * @param transaction
+	 * @return
+	 */
 	@PostMapping("/transfer")
 	public String transferMoney(Model model, @AuthenticationPrincipal UserDetails userDetails, TransactionDto transaction) {
 		if(transaction.getSendValue()==0) {
@@ -48,7 +61,6 @@ public class TransactionController {
 			transaction.setTransferTime(LocalDateTime.now());
 			transaction.setFee(transactionServ.computeFee(transaction.getSendValue()));
 			transactionServ.operation(transactionServ.transToDB(transaction));
-			// message de bien passe ?
 			return "redirect:/transfer?ok&inout=sent";
 		}
 	}

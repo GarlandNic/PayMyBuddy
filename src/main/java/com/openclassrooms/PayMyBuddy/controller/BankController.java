@@ -48,8 +48,6 @@ public class BankController {
 		if(isOK) {
 			return "redirect:/home";			
 		} else {
-//			userServ.filledWithUser(model, userDetails);
-//			model.addAttribute("error", true);
 			return "redirect:/home/credit?error";
 		}
 	}
@@ -77,6 +75,10 @@ public class BankController {
 
 	/**
 	 * Button to fill the debit form with the max
+	 * @param model
+	 * @param creditDto
+	 * @param userDetails
+	 * @return
 	 */
 	@PostMapping(value = "/profile/debit", params="everything")
 	public String confirmEverything(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
@@ -85,6 +87,13 @@ public class BankController {
 		return "debit";
 	}
 	
+	/**
+	 * button to confirm the total debitation and the suppression of the user
+	 * @param model
+	 * @param creditDto
+	 * @param userDetails
+	 * @return
+	 */
 	@PostMapping(value = "/profile/debit", params="everythingSure")
 	public String debitationTotal(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
 		PMBUser user = userServ.getPMBUser(userDetails);

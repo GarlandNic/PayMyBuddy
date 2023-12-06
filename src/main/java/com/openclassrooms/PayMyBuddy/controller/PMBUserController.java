@@ -24,6 +24,11 @@ public class PMBUserController {
 		return "login";
 	}
 	
+	/**
+	 * Display the form to create a new user
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/newUser")
 	public String newUserAccess(Model model) {
         PMBUser user = new PMBUser();
@@ -31,6 +36,12 @@ public class PMBUserController {
 		return "newUser";
 	}
 	
+	/**
+	 * Create a new user from the form
+	 * @param model
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/newUser")
 	public String createNewUser(Model model, @ModelAttribute("pmbuser") PMBUser user) {
 		PMBUser userCheck = userServ.createNewUser(user);
@@ -41,12 +52,24 @@ public class PMBUserController {
 	}
 
 	
+	/**
+	 * display the "home" page
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
 	@GetMapping("/home")
 	public String welcome(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
 		return "home";
 	}
 
+	/**
+	 * display the "profile" page
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
 	@GetMapping("/profile")
 	public String profile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
@@ -54,24 +77,49 @@ public class PMBUserController {
 		return "profile";
 	}
 	
+	/**
+	 * display the form for the user to modify some information
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
 	@GetMapping("/profile/modifUser")
 	public String modifUser(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
 		return "modifUser";
 	}
 	
+	/**
+	 * change the information about the user from the form. logout because the password may have been changed
+	 * @param model
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/profile/modifUser")
 	public String changeUser(Model model, @ModelAttribute("pmbuser") PMBUser user) {
 		userServ.changeUser(user);
-		return "redirect:/login";
+		return "redirect:/logout";
 	}
 	
+	/**
+	 * display the "contact" page
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
 	@GetMapping("/contact")
 	public String contact(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
 		return "contact";
 	}
 	
+	/**
+	 * send the message from the form in the "contact" page
+	 * @param model
+	 * @param userDetails
+	 * @param message
+	 * @return
+	 */
 	@PostMapping("/contact")
 	public String message(Model model, @AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("message") String message) {
 		userServ.contactMessage(message);
