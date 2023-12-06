@@ -18,6 +18,10 @@ public class UserDto {
 	public UserDto() {
 	}
 	
+	/**
+	 * Create UserDto from PMBUser (database)
+	 * @param user
+	 */
 	public UserDto(PMBUser user) {
 		this.email = user.getEmail();
 		this.nickname = user.getNickname();
