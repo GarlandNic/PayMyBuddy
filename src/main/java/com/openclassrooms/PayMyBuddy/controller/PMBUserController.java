@@ -9,26 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.openclassrooms.PayMyBuddy.dto.CreditDto;
-import com.openclassrooms.PayMyBuddy.dto.FriendDto;
-import com.openclassrooms.PayMyBuddy.dto.PayBuddyDto;
 import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
-import com.openclassrooms.PayMyBuddy.service.FriendService;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
-import com.openclassrooms.PayMyBuddy.service.TransactionService;
 
 @Controller
 public class PMBUserController {
 	
 	@Autowired
 	private PMBUserService userServ;
-	
-	@Autowired
-	private TransactionService transactionServ;
-	
-	@Autowired
-	private FriendService friendServ;
 	
 	@GetMapping("/login")
 	public String login(Model model) {
@@ -62,7 +51,6 @@ public class PMBUserController {
 	public String profile(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		userServ.filledWithUser(model, userDetails);
 		model.addAttribute("friendship", new Friend());
-//		friendServ.filledWithFriends(model, userDetails);
 		return "profile";
 	}
 	
