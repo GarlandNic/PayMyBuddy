@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices.RememberMeTokenAlgorithm;
 
 @Configuration
 @EnableWebSecurity
@@ -30,7 +33,11 @@ public class SecurityConfig {
 			.loginPage("/login")
 			.permitAll()
 		)
-		.logout((logout) -> logout.permitAll());
+		.logout((logout) -> logout
+				.permitAll())
+		.rememberMe((remember) -> remember
+				.rememberMeServices(rememberMeServices(userDetailsServ))
+			);
 
 		return http.build();
 	}
@@ -45,6 +52,14 @@ public class SecurityConfig {
 		AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
 		authenticationManagerBuilder.userDetailsService(userDetailsServ).passwordEncoder(bCryptPasswordEncoder);
 		return authenticationManagerBuilder.build();
+	}
+	
+	@Bean
+	RememberMeServices rememberMeServices(CustomUserDetailsService userDetailsService) {
+		RememberMeTokenAlgorithm encodingAlgorithm = RememberMeTokenAlgorithm.SHA256;
+		TokenBasedRememberMeServices rememberMe = new TokenBasedRememberMeServices("superKeySecrete", userDetailsService, encodingAlgorithm);
+		rememberMe.setMatchingAlgorithm(RememberMeTokenAlgorithm.MD5);
+		return rememberMe;
 	}
 	
 }

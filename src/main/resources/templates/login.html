@@ -4,12 +4,11 @@
     	<div th:replace="fragments :: html_head">Static html head</div>
     </head>
 
-    <body>
+    <body style="text-align:center;">
 
-		<img th:src="@{/images/couverturePMB.png}" alt="Pay My Buddy">
+		<img th:src="@{/images/couverturePMB.png}" alt="Pay My Buddy" class="center">
+		<br/>
 		
-    	<h1> Pay My Buddy</h1>
-    	
     	<div th:if="${param.error}">
         	<h3> Invalid username or password. </h3>
         </div>
@@ -17,6 +16,8 @@
            	<h3> You have been logged out. </h3>
         </div>
         <div th:if="${param.continue}">
+      		<div><img th:src="@{/images/logoPMB.png}" alt="logo" height="50" class="logo"></div>
+       		<br/>
            	<h3> You are now logged ! </h3>
            	<form action="#" th:action="@{/home}" method="get">
 				Click <button type="submit">here</button> to go to your home page.
@@ -26,10 +27,18 @@
     
         <div th:unless="${param.continue}">
         	<form th:action="@{/login}" method="post">
-            	<div><label><input type="email" name="username" placeholder="Email"/> </label></div>
+        	<fieldset>
+        		<div><img th:src="@{/images/logoPMB.png}" alt="logo" height="50" class="logo"></div>
+        		<br/>
+        		<div><label><input type="email" name="username" placeholder="Email"/> </label></div>
+        		<br/>
             	<div><label><input type="password" name="password" placeholder="Password"/> </label></div>
+        		<br/>
+        		<div><label><input type="checkbox" name="remember-me"/> Remember me </label></div>
+        		<br/>
         	    <div><input type="submit" value="Login"/></div>
-    	    </form>
+        	</fieldset>
+            </form>
         
 	        <br/>
         

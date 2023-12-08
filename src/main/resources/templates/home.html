@@ -7,7 +7,7 @@
     <body>
     	<div th:replace="fragments :: header(here='Home')">Static header</div>
 
-		<img th:src="@{/images/couverturePMB.png}" alt="Pay My Buddy">
+		<img th:src="@{/images/couverturePMB.png}" alt="Pay My Buddy" class="center">
 		
         <h1>Welcome back <span th:text="${user.nickname}">user</span> !</h1>
 
