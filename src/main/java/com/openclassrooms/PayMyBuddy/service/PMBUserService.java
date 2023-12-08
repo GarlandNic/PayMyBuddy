@@ -22,6 +22,11 @@ public class PMBUserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder; 
 	
+	/**
+	 * request to create a new PMBUser in the DB. the password is encrypted.
+	 * @param user
+	 * @return
+	 */
 	public PMBUser createNewUser(PMBUser user) {
 		Optional<PMBUser> existingUser = userRepo.findByEmail(user.getEmail());
 		
@@ -33,40 +38,60 @@ public class PMBUserService {
 		}
 	}
 
+	/**
+	 * request to get the user's information from the DB
+	 * @param userDetails
+	 * @return
+	 */
 	public PMBUser getPMBUser(UserDetails userDetails) {
 		Optional<PMBUser> user = userRepo.findByEmail(userDetails.getUsername());
 		return user.get();	
 	}
 	
+	/**
+	 * request to get a user's information from it's email
+	 * @param email
+	 * @return
+	 */
 	public PMBUser getPMBUserByEmail(String email) {
 		Optional<PMBUser> user = userRepo.findByEmail(email);
 		return (user.isPresent() ? user.get() : null);	
 	}
-	
-	public PMBUser filledWithUser(Model model, UserDetails userDetails) {
-		PMBUser user = this.getPMBUser(userDetails);
-		model.addAttribute("user", user);
-		return user;
-	}
 
+	/**
+	 * request to save a user in the DB
+	 * @param user
+	 * @return
+	 */
 	public PMBUser changeUser(PMBUser user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepo.save(user) ;
 	}
 
+	/**
+	 * request to delete a user
+	 * @param user
+	 */
 	public void supprUser(PMBUser user) {
 		userRepo.delete(user);		
 	}
 
-	public Friend FriendDtoToFriend(FriendDto buddy, PMBUser pmbUser) {
-		Friend friend = new Friend();
-		friend.setUser(pmbUser);
-		friend.setBuddy(userRepo.findByEmail(buddy.getFriendEmail()).get());
-		return friend;
-	}
-
+	/**
+	 * From the contact form. Should send the message to the right people. Do nothing yet.
+	 * @param message
+	 */
 	public void contactMessage(String message) {
-		// Send the message to the rigth people
 	}
-
+	
+	/**
+	 * update the Model with information about the user from the DB
+	 * @param model
+	 * @param userDetails
+	 * @return
+	 */
+	public PMBUser filledWithUser(Model model, UserDetails userDetails) {
+		PMBUser user = this.getPMBUser(userDetails);
+		model.addAttribute("user", user);
+		return user;
+	}
 }

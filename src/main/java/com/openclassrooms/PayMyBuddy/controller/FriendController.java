@@ -52,8 +52,8 @@ public class FriendController {
 		PMBUser buddy = userServ.getPMBUserByEmail(friendDto.getFriendEmail());
 		if(null==buddy) return "redirect:/transfer/addFriend?unknownFriend";
 		friend.setBuddy(buddy);
-        boolean isOk = friendServ.save(friend);
-        if(isOk) {
+        Friend savedFriend = friendServ.save(friend);
+        if(savedFriend != null) {
     		return "redirect:/transfer";
         } else {
     		return "redirect:/transfer/addFriend?error";
@@ -72,6 +72,7 @@ public class FriendController {
 	public String supprFriend(Model model, @AuthenticationPrincipal UserDetails userDetails, 
 			@ModelAttribute("friendship") Friend buddy, @RequestParam(required = true) String remove) {
 		buddy.setUser(userServ.getPMBUser(userDetails));
+		buddy.setBuddy(userServ.getPMBUserByEmail(remove));
 		friendServ.deleteFriend(buddy);
 		return "redirect:/profile";
 	}

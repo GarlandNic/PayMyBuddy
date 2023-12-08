@@ -30,15 +30,30 @@ public class TransactionService {
 	@Autowired
 	private FriendRepository friendRepo;
 
+	/**
+	 * request to get the list of Transaction which gave money to the user
+	 * @param username
+	 * @return
+	 */
 	private Iterable<Transaction> getTransferIncomes(String username) {
 		return transactionRepo.findByFriendshipBuddyEmailOrderByTransferTimeDesc(username);
 	}
 
+	/**
+	 * request to get the list of Transaction which the user gave money to
+	 * @param username
+	 * @return
+	 */
 	private Iterable<Transaction> getTransferOutcomes(String username) {
 		return transactionRepo.findByFriendshipUserEmailOrderByTransferTimeDesc(username);
 	}
 
 
+	/**
+	 * update the Model with the List of TransactionDto which gave money to the user
+	 * @param model
+	 * @param userDetails
+	 */
 	public void filledWithIncomes(Model model, UserDetails userDetails) {
 		List<TransactionDto> incomesList = new ArrayList<>();
 		this.getTransferIncomes(userDetails.getUsername()).forEach(trans -> {
@@ -47,6 +62,11 @@ public class TransactionService {
 		model.addAttribute("incomesList", incomesList);
 	}
 
+	/**
+	 * update the Model with the List of TransactionDto which the user gave money to
+	 * @param model
+	 * @param userDetails
+	 */
 	public void filledWithOutcomes(Model model, UserDetails userDetails) {
 		List<TransactionDto> outcomesList = new ArrayList<>();
 		this.getTransferOutcomes(userDetails.getUsername()).forEach(trans -> {
@@ -55,16 +75,21 @@ public class TransactionService {
 		model.addAttribute("outcomesList", outcomesList);
 	}
 
+	/**
+	 * compute the fee, from the constant TAXE
+	 * @param sendValue
+	 * @return
+	 */
 	public int computeFee(int sendValue) {
 		return (int) Math.ceil(sendValue*TAXE);
 	}
 
+	/**
+	 * operate a transaction : decrease account's user, increase account's friend, save user, friend and transaction
+	 * @param transaction
+	 */
 	@Transactional
 	public void operation(Transaction transaction) {
-		// commits/rollback ??
-		// on enlève les sous au sender
-		// on enregistre la transaction
-		// on ajoute les sous au receiver
 		PMBUser sender = transaction.getFriendship().getUser();
 		sender.decreaseAccount(transaction.getSentValueInCent());
 		userRepo.save(sender);
@@ -74,6 +99,11 @@ public class TransactionService {
 		userRepo.save(recipient);
 	}
 	
+	/**
+	 * convert a TransactionDto (form) to a Transaction (DB)
+	 * @param transDto
+	 * @return
+	 */
 	public Transaction transToDB(TransactionDto transDto) {
 		Transaction trans = new Transaction();
 		trans.setDescription(transDto.getDescription());

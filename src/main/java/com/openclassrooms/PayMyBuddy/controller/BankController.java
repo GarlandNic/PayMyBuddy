@@ -14,10 +14,6 @@ import com.openclassrooms.PayMyBuddy.dto.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.BankService;
 
-/**
- * @author Nicolas Garland
- *
- */
 @Controller
 public class BankController {
 	

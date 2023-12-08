@@ -18,6 +18,7 @@ import com.openclassrooms.PayMyBuddy.repository.PMBUserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+	
 	@Autowired
 	private PMBUserRepository userRepo;
 

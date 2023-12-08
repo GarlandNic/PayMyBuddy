@@ -13,6 +13,12 @@ public class BankService {
 	@Autowired
 	PMBUserRepository userRepo;
 
+	/**
+	 * add money to the balance's user by taking it from the bank
+	 * @param creditDto
+	 * @param user
+	 * @return
+	 */
 	public boolean creditation(CreditDto creditDto, PMBUser user) {
 		if(creditDto.getValue()>0 && IbanChecker(creditDto.getIban())) {
 			boolean transaction = takingFromBank(creditDto.getIban(), creditDto.getValue());
@@ -28,6 +34,12 @@ public class BankService {
 		}
 	}
 	
+	/**
+	 * remove money to the balance's user and giving it to the bank
+	 * @param creditDto
+	 * @param user
+	 * @return
+	 */
 	public boolean debitation(CreditDto creditDto, PMBUser user) {
 		if(creditDto.getValue()>0 && IbanChecker(creditDto.getIban())) {
 			boolean transaction = givingToBank(creditDto.getIban(), creditDto.getValue());
@@ -43,12 +55,23 @@ public class BankService {
 		}
 	}
 	
+	/**
+	 * Fake interaction with the bank. Always true.
+	 * @param iban
+	 * @return
+	 */
 	private boolean IbanChecker(String iban) {
 		return true;
 	}
+	/**
+	 * @see #IbanChecker(String))
+	 */
 	private boolean takingFromBank(String iban, int centValue) {
 		return true;
 	}
+	/**
+	 * @see #IbanChecker(String)
+	 */
 	private boolean givingToBank(String iban, int centValue) {
 		return true;
 	}

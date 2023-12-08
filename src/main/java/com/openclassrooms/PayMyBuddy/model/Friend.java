@@ -18,10 +18,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-/**
- * @author Nicolas Garland
- *
- */
 @Entity
 @Data
 @Table(name = "friend")

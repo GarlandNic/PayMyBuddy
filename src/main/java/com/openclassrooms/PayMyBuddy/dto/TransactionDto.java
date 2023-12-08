@@ -25,6 +25,10 @@ public class TransactionDto {
 	
 	String description;
 	
+	/**
+	 * Create a TransactionDto object from a Transaction (DB) object
+	 * @param transaction
+	 */
 	public TransactionDto(Transaction transaction) {
 		this.senderEmail = transaction.getFriendship().getUser().getEmail();
 		this.senderNickname = transaction.getFriendship().getUser().getNickname();
@@ -39,6 +43,10 @@ public class TransactionDto {
 	public TransactionDto() {
 	}
 
+	/**
+	 * Compute the received money from sendValue and fee
+	 * @return
+	 */
 	public int getReceivedValue() {
 		return (this.sendValue - this.fee);
 	}

@@ -16,10 +16,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-/**
- * @author Nicolas Garland
- *
- */
 @Entity
 @Data
 @Table(name = "PMBuser")
@@ -36,14 +32,24 @@ public class PMBUser {
 	private String password;
 	
 	private int balanceInCent=0;
-	// sql integer unsigned : 0 - 4,294,967,295
-	// java int : -2,147,483,648 à 2,147,483,647
 	
+	/** 
+	 * the balance should be modified only from increase and decrease Account ; check if parameter is positive
+	 * @param money
+	 */
 	public void increaseAccount(int money) {
 		if(money>0) this.balanceInCent += money;
 	}
+	/**
+	*@see #increaseAccount(int)
+	*/
 	public void decreaseAccount(int money) {
 		if(money>0) this.balanceInCent -= money;
+	}
+	/**
+	*@see #increaseAccount(int)
+	*/
+	public void setBalanceInCent(int money) {
 	}
 	
 	@OneToMany(cascade = CascadeType.ALL, 
