@@ -5,10 +5,10 @@
     </head>
 
 	<body>
-
+		<div style="text-align: center;">
 		<img th:src="@{/images/couverturePMB.png}" alt="Pay My Buddy" class="center">
 		
-		<h1> Hello there ! Welcome to Pay My Buddy :)</h1>
+		<h3> Hello there ! Welcome to Pay My Buddy &#x1F60A; </h3>
 
 			<form action="#" th:action="@{/login}" method="get">
 				<button type="submit">Login to my account !</button> 
@@ -21,7 +21,7 @@
 		<form action="#" th:action="@{/newUser}" method="get">
 			<button type="submit">Create a new account !</button> 
 		</form>
-		
+		</div>
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>
 </html>

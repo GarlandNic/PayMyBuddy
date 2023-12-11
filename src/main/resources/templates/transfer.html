@@ -7,6 +7,8 @@
 	<body>
 		<div th:replace="fragments :: header(here='Transfer')">Static header</div>
 		
+		<div class="internbody">
+		
 		<div th:if="${param.zeroError}">
         	<h3> Minimum amount to send: 1€. </h3>
         </div>
@@ -15,45 +17,47 @@
 		<form th:action="@{/transfer/addFriend}" method="get">
 			<h3> Send Money 
 				<span style="float:right; display:flex">
-        	   		<input type="submit" value="Add Connection"/>
+        	   		<input type="submit" value="Add Connection" style="color: white; background-color: blue;"/>
         		</span>
         	</h3>
    		</form>
 		
  		<form action="#" th:action="@{/transfer}" th:object="${transaction}" method="post">
-			<fieldset>
-				<select id="dropDownList" th:field="*{recipientEmail}" required>
-    				<option value="0" disabled>Select A Connection</option>
-    				<option th:each="friend : ${buddyList}" th:value="${friend.email}" th:text="${friend.nickname}"></option>
-				</select>
-				<input type="number" th:field="*{sendValue}" min="1" th:max="${user.balanceInCent/100}" value="0" style="padding-right:20px; text-align:right;" required/>
-				<span style="margin-left:-20px;">€</span>
-        		<button type="submit">Pay</button> 
-        						
+			<fieldset style="backgroundcolor: lightgrey; width: 100%;">
 				<p>
-				<textarea th:field="*{description}" placeholder="Write a description here" rows="1" cols="30"></textarea>
+					<select id="dropDownList" th:field="*{recipientEmail}" required>
+    					<option value="0" disabled>Select A Connection</option>
+    					<option th:each="friend : ${buddyList}" th:value="${friend.email}" th:text="${friend.nickname}"></option>
+					</select>
+					<input type="number" th:field="*{sendValue}" min="1" th:max="${user.balanceInCent/100}" value="0" style="padding-right:20px; text-align:right;" required/>
+					<span style="margin-left:-20px;">€</span>
+        		</p>
+        						
+				<p style="display: inline;">
+					<textarea th:field="*{description}" placeholder="Write a description here" rows="1" cols="30"></textarea>
+	       			<button type="submit" style="color: white; background-color: green;">Pay</button>
             	</p>
             	
 			</fieldset>
  		</form>
 		
 		<div th:with="inout=${#strings.toString(param.inout)}">
-		<h3> My Transactions </h3>
+		<h3> My Transactions
+			<span style="float:right; display:flex">
+				<form th:action="@{/transfer}" method="get">
+        	   		<button type="submit" name="inout" value="received" th:unless="${inout == 'received'}">Received</button>
+           			<span th:if="${inout == 'received'}">Received</span>
+       			</form>
+				<form th:action="@{/transfer}" method="get">
+           			<button type="submit" name="inout" value="sent" th:unless="${inout == 'sent'}">Sent</button>
+           			<span th:if="${inout == 'sent'}">Sent</span>
+       			</form>
+   			</span>    
+   		</h3>   	
 		
-		<span style="float:right; display:flex">
-			<form th:action="@{/transfer}" method="get">
-           		<button type="submit" name="inout" value="received" th:unless="${inout == 'received'}">Received</button>
-           		<span th:if="${inout == 'received'}">Received</span>
-       		</form>
-			<form th:action="@{/transfer}" method="get">
-           		<button type="submit" name="inout" value="sent" th:unless="${inout == 'sent'}">Sent</button>
-           		<span th:if="${inout == 'sent'}">Sent</span>
-       		</form>
-   		</span>       	
-		
-		<table>
+		<table style="text-align: center; width:100%;">
 			<thead>
-				<tr>
+				<tr style="color: white; background-color: green;">
 					<th>Connections</th>
 					<th>Description</th>
 					<th>Amount</th>
@@ -102,6 +106,8 @@ Description: '+outcome.description}">Transaction.value</span>€ </td>
 				</tr>
 			</tbody>
 		</table>
+		</div>
+		
 		</div>
 		
 		<div th:replace="fragments :: footer">Static footer</div>

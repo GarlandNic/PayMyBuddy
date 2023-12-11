@@ -7,6 +7,8 @@
 	<body>
     	<div th:replace="fragments :: header(here='Contact')">Static header</div>
     	
+    	<div class="internbody">
+    	
     	<p>
     		Pay My Buddy : version 0.8
     		<br/>
@@ -25,6 +27,8 @@
 			<textarea type="text" th:name="${message}"></textarea>
 			<input type="submit" value="Send"/>
 		</form>
+		
+		</div>
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

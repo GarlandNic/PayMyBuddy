@@ -7,6 +7,8 @@
 	<body>
     	<div th:replace="fragments :: header(here='Profile')">Static header</div>
     	
+    	<div class="internbody">
+    	
     	<form action="#" th:action="@{/profile/debit}" th:object="${creditdto}" method="post">
 			<h3>Send money to your bank account</h3>
 			<fieldset>
@@ -35,8 +37,9 @@
 			<p th:if="${param.everything}">
 				Are you sure ? <button type="submit" formmethod="post" name="everythingSure">Yes I am.</button>
 			</p>
-			
 		</form>
+		
+		</div>
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

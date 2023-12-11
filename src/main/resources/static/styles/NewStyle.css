@@ -4,7 +4,7 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	margin:auto;
+	margin: auto;
 }
 
 fieldset {
@@ -13,5 +13,16 @@ fieldset {
 }
 
 .logo {
-	vertical-align:middle;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.internbody {
+	margin: auto 15%
 }

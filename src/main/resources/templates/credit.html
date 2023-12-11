@@ -6,6 +6,8 @@
 
 	<body>
     	<div th:replace="fragments :: header (here='Home')">Static header</div>
+    	
+    	<div class="internbody">
         
     	<form action="#" th:action="@{/home/credit}" th:object="${creditdto}" method="post">
 			<h1>Credit your account</h1>
@@ -32,6 +34,8 @@
         		</p>
 			</fieldset>
 		</form>
+		
+		</div>
 		
 		<div th:replace="fragments :: footer">Static footer</div>
 	</body>

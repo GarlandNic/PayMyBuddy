@@ -5,28 +5,36 @@
     </head>
 	
 	<body>
-
+	
+		<br/>
+		
 		<form action="#" th:action="@{/newUser}" th:object="${pmbuser}" method="post">
-			<h1> Create new account </h1>
-        		<div th:if="${param.exist}">
-            		<h3> This account already exist ! </h3>
-        		</div>
 			<fieldset>
+        		<div><img th:src="@{/images/logoPMB.png}" alt="logo" height="50" class="logo"></div>
+				<h3> Create new account </h3>
+        		<div th:if="${param.exist}">
+            		<h4> This account already exist ! </h4>
+        		</div>
+        		<p>	
         		<label>
-      			E-mail address:
-            	<input type="email" th:field="*{email}" required />
+	      			E-mail address:
+    	        	<input type="email" th:field="*{email}" required />
             	</label>
+            	</p>
+            	<p>
         		<label>
-      			Username:
-            	<input type="text" th:field="*{nickname}"/>
+      				Username:
+            		<input type="text" th:field="*{nickname}"/>
             	</label>
+            	</p>
+            	<p>
            		<label>
-           		Password:
-            	<input type="password" th:field="*{password}" required />
+           			Password:
+            		<input type="password" th:field="*{password}" required />
             	</label>
-
-        		<p> 
-        		<button type="submit">Create</button> 
+				</p>
+        		<p style="text-align: right;"> 
+   		     		<button type="submit">Create</button> 
         		</p>
 			</fieldset>
 		</form>
