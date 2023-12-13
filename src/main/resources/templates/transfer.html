@@ -23,7 +23,7 @@
    		</form>
 		
  		<form action="#" th:action="@{/transfer}" th:object="${transaction}" method="post">
-			<fieldset style="backgroundcolor: lightgrey; width: 100%;">
+			<fieldset style="background-color: lightgrey; width: 100%; border: none;">
 				<p>
 					<select id="dropDownList" th:field="*{recipientEmail}" required>
     					<option value="0" disabled>Select A Connection</option>
@@ -55,7 +55,7 @@
    			</span>    
    		</h3>   	
 		
-		<table style="text-align: center; width:100%;">
+		<table style="text-align: center; width:100%; border: 1px solid; border-collapse:collapse;">
 			<thead>
 				<tr style="color: white; background-color: green;">
 					<th>Connections</th>
@@ -64,7 +64,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${inout == 'received'}" th:each="income : ${incomesList}">
+				<tr th:if="${inout == 'received'}" th:each="income, iStat : ${incomesList}" th:style="${iStat.odd}? 'background-color: lightgrey;'">
 					<td> <span th:text="${income.senderNickname}" th:title="${'From: '+income.senderEmail+' 
 To: '+income.recipientEmail+'
 Value: '+income.sendValue/100.0+'€
@@ -84,7 +84,7 @@ Fee: '+income.fee/100.0+'€
 Time: '+income.transferTime+'
 Description: '+income.description}">Transaction.value</span>€ </td>
 				</tr>
-				<tr th:if="${inout == 'sent'}" th:each="outcome : ${outcomesList}">
+				<tr th:if="${inout == 'sent'}" th:each="outcome, iStat : ${outcomesList}" th:style="${iStat.odd}? 'background-color: lightgrey;'">
 					<td> <span th:text="${outcome.recipientNickname}" th:title="${'From: '+outcome.senderEmail+'
 To: '+outcome.recipientEmail+'
 Value: '+outcome.sendValue/100.0+'€

@@ -10,11 +10,11 @@
     	<div class="internbody">
         
     	<form action="#" th:action="@{/home/credit}" th:object="${creditdto}" method="post">
-			<h1>Credit your account</h1>
-        		<div th:if="${param.error}">
-            		<h3> A problem occurs ! </h3>
-        		</div>
 			<fieldset>
+				<h3>Credit your account</h3>
+        		<div th:if="${param.error}">
+            		<h4> A problem occurs ! </h4>
+        		</div>
 				<p>
         		<label>
       			How much money: 

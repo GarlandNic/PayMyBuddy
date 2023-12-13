@@ -79,7 +79,9 @@ public class BankController {
 	@PostMapping(value = "/profile/debit", params="everything")
 	public String confirmEverything(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
 		PMBUser user = userServ.getPMBUser(userDetails);
-		creditDto.setValue(user.getBalanceInCent());
+		creditDto.setValue(user.getBalanceInCent()/100);
+		userServ.filledWithUser(model, userDetails);
+		model.addAttribute("creditdto", creditDto);
 		return "debit";
 	}
 	
@@ -93,7 +95,7 @@ public class BankController {
 	@PostMapping(value = "/profile/debit", params="everythingSure")
 	public String debitationTotal(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
 		PMBUser user = userServ.getPMBUser(userDetails);
-		creditDto.setValue(user.getBalanceInCent());
+		creditDto.setValue(user.getBalanceInCent()/100);
 		bankServ.debitation(creditDto, user);
 		userServ.supprUser(user);
 		return "redirect:/login?logout";

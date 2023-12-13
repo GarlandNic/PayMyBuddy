@@ -10,8 +10,8 @@
     	<div class="internbody">
     	
     	<form action="#" th:action="@{/profile/debit}" th:object="${creditdto}" method="post">
-			<h3>Send money to your bank account</h3>
 			<fieldset>
+				<h3>Send money to your bank account</h3>
 				<p>
         		<label>
       			How much money: 
@@ -29,14 +29,15 @@
         		<p> 
         		<button type="submit">Send</button> 
         		</p>
+				<br/>
+				<p>
+					<button type="submit" name="everything" formmethod="post">Send everything and remove my profile</button>
+				</p>
+				<p th:if="${param.everything}">
+					Are you sure ? <button type="submit" formmethod="post" name="everythingSure">Yes I am.</button>
+				</p>
 			</fieldset>
 			
-			<p>
-				<button type="submit" name="everything" formmethod="post">Send everything and remove my profile</button>
-			</p>
-			<p th:if="${param.everything}">
-				Are you sure ? <button type="submit" formmethod="post" name="everythingSure">Yes I am.</button>
-			</p>
 		</form>
 		
 		</div>

@@ -4,7 +4,7 @@
     	<div th:replace="fragments :: html_head">Static html head</div>
     </head>
 	
-	<body>
+	<body style="text-align:center;">
 	
 		<br/>
 		
@@ -18,24 +18,25 @@
         		<p>	
         		<label>
 	      			E-mail address:
-    	        	<input type="email" th:field="*{email}" required />
+    	        	<input type="email" th:field="*{email}" placeholder="Email" required />
             	</label>
             	</p>
             	<p>
         		<label>
       				Username:
-            		<input type="text" th:field="*{nickname}"/>
+            		<input type="text" th:field="*{nickname}" placeholder="Name"/>
             	</label>
             	</p>
             	<p>
            		<label>
            			Password:
-            		<input type="password" th:field="*{password}" required />
+            		<input type="password" th:field="*{password}" placeholder="Password" required />
             	</label>
 				</p>
-        		<p style="text-align: right;"> 
+				<br/>
+        		<div style="text-align: right;"> 
    		     		<button type="submit">Create</button> 
-        		</p>
+        		</div>
 			</fieldset>
 		</form>
 

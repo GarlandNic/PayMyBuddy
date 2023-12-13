@@ -8,8 +8,9 @@
 }
 
 fieldset {
-	width: 0px; 
+/* 	width: 0px;  */
 	margin: auto;
+	display: inline;
 }
 
 .logo {
