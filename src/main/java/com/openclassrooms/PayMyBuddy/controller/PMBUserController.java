@@ -13,6 +13,9 @@ import com.openclassrooms.PayMyBuddy.model.Friend;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class PMBUserController {
 	
@@ -94,11 +97,14 @@ public class PMBUserController {
 	 * @param model
 	 * @param user
 	 * @return
+	 * @throws ServletException 
 	 */
 	@PostMapping("/profile/modifUser")
-	public String changeUser(Model model, @AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("user") PMBUser user) {
+	public String changeUser(Model model, @AuthenticationPrincipal UserDetails userDetails, 
+			@ModelAttribute("user") PMBUser user, HttpServletRequest request) throws ServletException {
 		userServ.changeUser(userDetails, user);
-		return "redirect:/logout";
+		request.logout();
+		return "redirect:/home?logout";
 	}
 	
 	/**

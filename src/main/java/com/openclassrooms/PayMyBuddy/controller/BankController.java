@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.openclassrooms.PayMyBuddy.service.PMBUserService;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+
 import com.openclassrooms.PayMyBuddy.dto.CreditDto;
 import com.openclassrooms.PayMyBuddy.model.PMBUser;
 import com.openclassrooms.PayMyBuddy.service.BankService;
@@ -91,14 +95,17 @@ public class BankController {
 	 * @param creditDto
 	 * @param userDetails
 	 * @return
+	 * @throws ServletException 
 	 */
 	@PostMapping(value = "/profile/debit", params="everythingSure")
-	public String debitationTotal(Model model, @ModelAttribute("creditdto") CreditDto creditDto, @AuthenticationPrincipal UserDetails userDetails) {
+	public String debitationTotal(Model model, @ModelAttribute("creditdto") CreditDto creditDto, 
+			@AuthenticationPrincipal UserDetails userDetails, HttpServletRequest request) throws ServletException {
 		PMBUser user = userServ.getPMBUser(userDetails);
 		creditDto.setValue(user.getBalanceInCent()/100);
 		bankServ.debitation(creditDto, user);
 		userServ.supprUser(user);
-		return "redirect:/login?logout";
+		request.logout();
+		return "redirect:/home?logout";
 	}
 
 }

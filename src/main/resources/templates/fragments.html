@@ -36,9 +36,6 @@
     	        			<input type="submit" value="Contact" th:unless="${here == 'Contact'}"/>
         	    			<span th:if="${here == 'Contact'}"> &nbsp; Contact &nbsp; </span>
         				</form>
-						<form th:action="@{/logout}" method="get">
-    	        			<input type="submit" value="Sign Out"/>
-        				</form>
 						<form th:action="@{/logout}" method="post">
     	        			<input type="submit" value="Sign Out"/>
         				</form>
