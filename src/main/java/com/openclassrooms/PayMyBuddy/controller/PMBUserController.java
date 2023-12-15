@@ -96,8 +96,8 @@ public class PMBUserController {
 	 * @return
 	 */
 	@PostMapping("/profile/modifUser")
-	public String changeUser(Model model, @ModelAttribute("user") PMBUser user) {
-		userServ.changeUser(user);
+	public String changeUser(Model model, @AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("user") PMBUser user) {
+		userServ.changeUser(userDetails, user);
 		return "redirect:/logout";
 	}
 	

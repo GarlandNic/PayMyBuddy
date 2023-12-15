@@ -58,12 +58,16 @@ public class PMBUserService {
 
 	/**
 	 * request to save a user in the DB
+	 * @param userDetails 
 	 * @param user
 	 * @return
 	 */
-	public PMBUser changeUser(PMBUser user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return userRepo.save(user) ;
+	public PMBUser changeUser(UserDetails userDetails, PMBUser user) {
+		PMBUser oldUser = userRepo.findByEmail(userDetails.getUsername()).get();
+		if(!oldUser.getEmail().equals(user.getEmail())) return user;
+		oldUser.setNickname(user.getNickname());
+		oldUser.setPassword(passwordEncoder.encode(user.getPassword()));
+		return userRepo.save(oldUser) ;
 	}
 
 	/**

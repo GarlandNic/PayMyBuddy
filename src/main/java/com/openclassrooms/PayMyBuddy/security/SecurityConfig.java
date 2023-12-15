@@ -33,7 +33,9 @@ public class SecurityConfig {
 			.loginPage("/login")
 			.permitAll()
 		)
-		.logout((logout) -> logout
+		.logout((logout) -> logout.logoutUrl("/logout")
+				.clearAuthentication(true)
+				.invalidateHttpSession(true)
 				.permitAll())
 		.rememberMe((remember) -> remember
 				.rememberMeServices(rememberMeServices(userDetailsServ))
