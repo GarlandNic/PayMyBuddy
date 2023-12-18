@@ -39,7 +39,9 @@ Chaque transaction doit contenir le montant envoyé, ainsi que la taxe prélevé
 Chaque transaction enregistre également l'expéditeur et le destinataire de la transaction en l'associant à une relation d'amitié.
 On associe également à une transaction sa date (et heure) de transfert ainsi qu'une description optionnelle que peut renseigner l'expéditeur.
 
-Le diagramme ci-dessous résume ses informations :
+Les diagrammes de classes et de données ci-dessous résument ses informations :
+
+![Diagramme des classes](Readme_image/Diagramme_de_classes.png)
 
 ![Diagramme des données](Readme_image/Diagramme_de_donnees.svg)
 
@@ -68,8 +70,8 @@ Ces classes définissent des 'entités' qui vont être manipuler par le programm
 
 Enfin le package '.dto' contient quatre classes qui servent à stocker les données qui transitent depuis ou vers les pages html.
 
-Ses information sont résumés sur le diagramme de classes ci-dessous :
+Ses information sont résumés sur le diagramme d'architecture ci-dessous :
 
-![Diagramme des classes](Readme_image/diagramme_de_classes.svg)
+![Diagramme des classes](Readme_image/Diagramme_architecture.png)
 
 
