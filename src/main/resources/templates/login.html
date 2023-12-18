@@ -16,14 +16,14 @@
         </div>
         <div th:if="${param.continue}">
            	<form action="#" th:action="@{/home}" method="get">
-			<fieldset>
-      		<div><img th:src="@{/images/logoPMB.png}" alt="logo" height="50" class="logo"></div>
-       		<br/>
-           	<h3> You are now logged ! </h3>
-				Click <button type="submit">here</button> to go to your home page.
+				<fieldset>
+    		  		<div><img th:src="@{/images/logoPMB.png}" alt="logo" height="50" class="logo"></div>
+       				<br/>
+           			<h3> You are now logged ! </h3>
+					Click <button type="submit">here</button> to go to your home page.
+				</fieldset>
+				<br/>
 			</form>
-			<br/>
-			</fieldset>
         </div>
     
         <div th:unless="${param.continue}">

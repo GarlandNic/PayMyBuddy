@@ -22,6 +22,7 @@ Le fichier 'application.properties' (situé dans src/main/ressources) doit être
 Le fichier 'DataBasePayMyBuddy.sql' contient les commandes sql pour générer les tables nécessaires à l'application.
 Le nom de la 'database' peut être modifié si nécessaire, mais doit correspondre avec ce qui est mis dans 'application.properties' (en datasource.url).
 Le fichier 'ExampleData.sql' contient des 'insert' pour avoir des données fictives à des fins de démonstrations de l'application.
+Ces données concernent 4 personnes (Alice, Bob, Charlie et Delphine) dont les identifiants de connexions sont respectivement A@A, B@B, C@C et D@D pour les emails et AAA, BBB, CCC et DDD pour les mots de passe.
 
 
 ### Structure des données
